@@ -109,7 +109,6 @@ public class GeraEditorProcessDefinitionPage extends EditorProcessDefinitionPage
             Item item = processDefinitionTable.addItem(modelData.getId());
             item.getItemProperty("name").setValue(modelData.getName());
             String category = modelData.getCategory();
-            System.out.println("modelData.getCategory(): "+category);
 
             // Martynas' hack to get correct category for Model:
             try {

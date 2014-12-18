@@ -714,6 +714,19 @@
             <arguments>${arguments} -Psonatype-oss-release</arguments>
           </configuration>
         </plugin>
+
+        <plugin>
+        <!-- NOTE: We don't need a groupId specification because the group is
+             org.apache.maven.plugins ...which is assumed by default.
+         -->
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.5.2</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -882,6 +895,74 @@
         <module>modules/activiti-crystalball</module>
       </modules>
     </profile>
+
+    <profile>
+      <id>update</id>
+      <modules>
+        <!--<module>modules/activiti-spring</module>-->
+        <!--<module>modules/activiti-bpmn-model</module>-->
+        <!--<module>modules/activiti-process-validation</module>-->
+        <!--<module>modules/activiti-image-generator</module>-->
+        <!--<module>modules/activiti-bpmn-converter</module>-->
+        <!--<module>modules/activiti-bpmn-layout</module>-->
+        <!--<module>modules/activiti-json-converter</module>-->
+        <!--<module>modules/activiti-simple-workflow</module>-->
+        <!--<module>modules/activiti-common-rest</module>-->
+        <!--<module>modules/activiti-modeler</module>-->
+        <!--<module>modules/activiti-diagram-rest</module>-->
+        <!--<module>modules/activiti-explorer</module>-->
+        <!--<module>modules/activiti-rest</module>-->
+        <!--<module>modules/activiti-webapp-rest2</module>-->
+        <!--<module>modules/activiti-webapp-explorer2</module>-->
+        <!--<module>modules/activiti-cxf</module>-->
+        <!--<module>modules/activiti-osgi</module>-->
+        <!--<module>modules/activiti-camel</module>-->
+        <!--<module>modules/activiti-mule</module>-->
+        <!--<module>modules/activiti-cdi</module>-->
+        <!--<module>modules/activiti-ldap</module>-->
+        <!--<module>modules/activiti-crystalball</module>-->
+        <module>modules/activiti-bpmn-model</module>
+        <module>modules/activiti-process-validation</module>
+        <module>modules/activiti-image-generator</module>
+        <module>modules/activiti-json-converter</module>
+        <module>modules/activiti-bpmn-converter</module>
+        <module>modules/activiti-engine</module>
+        <module>modules/activiti-spring</module>
+        <module>modules/activiti-explorer</module>
+        <module>modules/activiti-common-rest</module>
+        <module>modules/activiti-modeler</module>
+        <module>modules/activiti-diagram-rest</module>
+        <module>modules/activiti-bpmn-layout</module>
+        <module>modules/activiti-simple-workflow</module>
+        <module>modules/activiti-crystalball</module>
+      </modules>
+      <properties>
+        <skipTests>true</skipTests>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>create-source-zip</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>assembly/zip.xml</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <profile>
       <id>database</id>
       <activation>

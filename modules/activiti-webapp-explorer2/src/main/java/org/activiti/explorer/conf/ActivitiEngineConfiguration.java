@@ -1,5 +1,6 @@
 package org.activiti.explorer.conf;
 
+import java.net.MalformedURLException;
 import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,14 @@ import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -38,14 +44,39 @@ public class ActivitiEngineConfiguration {
   
   @Autowired
   protected Environment environment;
-  
+
+  @Bean
+  public static PropertySourcesPlaceholderConfigurer properties() {
+    PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
+    try {
+      propertySourcesPlaceholderConfigurer.setLocations(new Resource[] {
+              new ClassPathResource("ui.properties"),
+              new ClassPathResource("engine.properties"),
+              new UrlResource("file:///opt/config/db.properties")});
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
+    return propertySourcesPlaceholderConfigurer;
+  }
+
+  @Value("${jdbc.driver}")
+  private String jdbcDriver;
+  @Value("${jdbc.url}")
+  private String jdbcUrl;
+  @Value("${jdbc.username}")
+  private String jdbcUsername;
+  @Value("${jdbc.password}")
+  private String jdbcPassword;
+
   @Bean
   public DataSource dataSource() { 
     SimpleDriverDataSource ds = new SimpleDriverDataSource();
     
     try {
       @SuppressWarnings("unchecked")
-      Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(environment.getProperty("jdbc.driver", "org.h2.Driver"));
+//      Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(environment.getProperty("jdbc.driver", "org.h2.Driver"));
+//        Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(environment.getProperty("jdbc.driver", "oracle.jdbc.driver.OracleDriver"));
+        Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(jdbcDriver);
       ds.setDriverClass(driverClass);
       
     } catch (Exception e) {
@@ -53,10 +84,16 @@ public class ActivitiEngineConfiguration {
     }
     
     // Connection settings
-    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000"));
-    ds.setUsername(environment.getProperty("jdbc.username", "sa"));
-    ds.setPassword(environment.getProperty("jdbc.password", ""));
-    
+//    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000"));
+//    ds.setUsername(environment.getProperty("jdbc.username", "sa"));
+//    ds.setPassword(environment.getProperty("jdbc.password", ""));
+
+//    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:oracle:thin:@192.168.1.204:1521:sis1")); // internal ip
+//    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:oracle:thin:@213.164.97.50:1521:sis1"));
+    ds.setUrl(jdbcUrl);
+
+    ds.setUsername(jdbcUsername);
+    ds.setPassword(jdbcPassword);
     return ds;
   }
 
