@@ -127,6 +127,7 @@ public class BpmnDeployer implements Deployer {
             if (processEngineConfiguration.isCreateDiagramOnDeploy() &&
                   diagramResourceName==null && processDefinition.isGraphicalNotationDefined()) {
               try {
+                  LOG.info("Generating process diagram");
                   byte[] diagramBytes = IoUtil.readInputStream(processEngineConfiguration.
                     getProcessDiagramGenerator().generateDiagram(bpmnParse.getBpmnModel(), "png", processEngineConfiguration.getActivityFontName(),
                         processEngineConfiguration.getLabelFontName(), processEngineConfiguration.getClassLoader()), null);

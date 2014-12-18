@@ -189,6 +189,13 @@ create table ACT_EVT_LOG (
     IS_PROCESSED_ bit default 0
 );
 
+create table GERA_PROC_STRUCT (
+    key varchar(64),
+    parentKey varchar(64),
+    title varchar(200),
+    inserted timestamp
+);
+
 create index ACT_IDX_EXEC_BUSKEY on ACT_RU_EXECUTION(BUSINESS_KEY_);
 create index ACT_IDX_TASK_CREATE on ACT_RU_TASK(CREATE_TIME_);
 create index ACT_IDX_IDENT_LNK_USER on ACT_RU_IDENTITYLINK(USER_ID_);

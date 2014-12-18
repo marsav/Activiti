@@ -92,6 +92,7 @@ drop table  ACT_RU_TASK;
 drop table  ACT_RU_EXECUTION;
 drop table  ACT_RU_JOB;
 drop table  ACT_RU_EVENT_SUBSCR;
+drop table  GERA_PROC_STRUCT;
 
 drop sequence act_evt_log_seq;
 drop table ACT_EVT_LOG;

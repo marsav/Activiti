@@ -79,24 +79,24 @@ public class DemoDataConfiguration {
   
   @PostConstruct
   public void init() {
-    if (Boolean.valueOf(environment.getProperty("create.demo.users", "true"))) {
+    if (Boolean.valueOf(environment.getProperty("create.demo.users", "false"))) {
       LOGGER.info("Initializing demo groups");
       initDemoGroups();
       LOGGER.info("Initializing demo users");
       initDemoUsers();
     }
     
-    if (Boolean.valueOf(environment.getProperty("create.demo.definitions", "true"))) {
+    if (Boolean.valueOf(environment.getProperty("create.demo.definitions", "false"))) {
       LOGGER.info("Initializing demo process definitions");
       initProcessDefinitions();
     }
     
-    if (Boolean.valueOf(environment.getProperty("create.demo.models", "true"))) {
+    if (Boolean.valueOf(environment.getProperty("create.demo.models", "false"))) {
       LOGGER.info("Initializing demo models");
       initModelData();
     }
     
-    if (Boolean.valueOf(environment.getProperty("create.demo.reports", "true"))) {
+    if (Boolean.valueOf(environment.getProperty("create.demo.reports", "false"))) {
       LOGGER.info("Initializing demo report data");
       generateReportData();
     }

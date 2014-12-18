@@ -18,10 +18,10 @@ package org.activiti.explorer;
  * @author Joram Barrez
  */
 public interface Messages {
-  
+
   // General
   String APP_TITLE = "app.title";
-  
+
   String CONFIRMATION_DIALOG_DEFAULT_TITLE = "confirmation.dialog.default.title";
   String CONFIRMATION_DIALOG_YES = "confirmation.dialog.yes";
   String CONFIRMATION_DIALOG_NO = "confirmation.dialog.no";
@@ -31,22 +31,22 @@ public interface Messages {
   String BUTTON_SAVE = "button.save";
   String BUTTON_DELETE = "button.delete";
   String UNCAUGHT_EXCEPTION = "uncaught.exception";
-  
+
   // Navigation
   String NAVIGATION_ERROR_NOT_INVOLVED_TITLE = "navigation.error.not.involved.title";
   String NAVIGATION_ERROR_NOT_INVOLVED = "navigation.error.not.involved";
-  
+
   // Login
   String LOGIN_USERNAME = "login.username";
   String LOGIN_PASSWORD = "login.password";
   String LOGIN_BUTTON = "login.button";
   String LOGIN_FAILED_HEADER = "login.failed.header";
   String LOGIN_FAILED_INVALID = "login.failed.invalid";
-  
+
   // Header
   String HEADER_SEARCHBOX = "header.searchbox";
   String HEADER_LOGOUT = "header.logout";
-  
+
   // Footer
   String FOOTER_MESSAGE = "footer.message";
 
@@ -55,18 +55,18 @@ public interface Messages {
   String MAIN_MENU_PROCESS = "main.menu.process";
   String MAIN_MENU_MANAGEMENT = "main.menu.management";
   String MAIN_MENU_REPORTS = "main.menu.reports";
-  
+
   // Password
   String PASSWORD_CHANGE = "password.change";
   String PASSWORD_CHANGE_INPUT_REQUIRED = "password.change.input.required";
   String PASSWORD_CHANGE_INPUT_MATCH = "password.change.input.match";
   String PASSWORD_CHANGED_NOTIFICATION = "password.changed.notification";
-  
+
   // Forms
   String FORM_USER_NO_USER_SELECTED = "form.user.no.user.selected";
   String FORM_USER_SELECT = "form.user.select";
   String FORM_FIELD_REQUIRED = "form.field.required";
-  
+
   // Profile
   String PROFILE_ABOUT = "profile.about";
   String PROFILE_NAME = "profile.name";
@@ -95,7 +95,7 @@ public interface Messages {
   String PROFILE_ACCOUNT_ALFRESCO = "profile.account.alfresco";
   String PROFILE_NEW_PASSWORD = "profile.new.password";
   String PROFILE_CONFIRM_PASSWORD = "profile.confirm.password";
-  
+
   // Imap
   String IMAP_SERVER = "imap.server";
   String IMAP_PORT = "imap.port";
@@ -103,13 +103,13 @@ public interface Messages {
   String IMAP_USERNAME = "imap.username";
   String IMAP_PASSWORD = "imap.password";
   String IMAP_DESCRIPTION = "imap.description";
-  
+
   //Alfresco
   String ALFRESCO_SERVER = "alfresco.server";
   String ALFRESCO_USERNAME = "alfresco.username";
   String ALFRESCO_PASSWORD = "alfresco.password";
   String ALFRESCO_DESCRIPTION = "alfresco.description";
-  
+
   // Case
   String TASK_CREATE_NEW = "task.create.new";
   String TASK_NEW = "task.new";
@@ -121,7 +121,7 @@ public interface Messages {
   String TASK_MENU_QUEUED = "task.menu.queued";
   String TASK_MENU_INVOLVED = "task.menu.involved";
   String TASK_MENU_ARCHIVED = "task.menu.archived";
-  
+
   // Task details
   String TASK_ID = "task.id";
   String TASK_NAME = "task.name";
@@ -166,13 +166,13 @@ public interface Messages {
   String TASK_SUBTASKS = "task.subtasks";
   String TASK_NO_SUBTASKS = "task.no.subtasks";
   String TASK_CONFIRM_DELETE_SUBTASK = "task.confirm.delete.subtask";
-  
+
   // Task roles
   String TASK_ROLE_CONTRIBUTOR = "task.role.contributor";
   String TASK_ROLE_MANAGER = "task.role.manager";
   String TASK_ROLE_SPONSOR = "task.role.sponsor";
   String TASK_ROLE_IMPLEMENTER = "task.role.implementer";
-        
+
   // Events
   String EVENT_ADD_USER_LINK = "event.add.user.link";
   String EVENT_DELETE_USER_LINK = "event.delete.user.link";
@@ -183,16 +183,16 @@ public interface Messages {
   String EVENT_COMMENT = "event.comment";
   String EVENT_DEFAULT = "event.default";
   String EVENT_TITLE = "event.title";
-  
+
   // Process menu
   String PROCESS_MENU_MY_INSTANCES = "process.menu.my.instances";
   String PROCESS_MENU_DEPLOYED_DEFINITIONS = "process.menu.deployed.definitions";
   String PROCESS_MENU_EDITOR_DEFINITIONS = "process.menu.editor.definitions";
   String PROCESS_MENU_INSTANCES = "process.menu.instances";
-  
+
   // Process page
   String PROCESS_CATEGORY = "process.category";
-  String PROCESS_VERSION = "process.version"; 
+  String PROCESS_VERSION = "process.version";
   String PROCESS_DEPLOY_TIME = "process.deploy.time";
   String PROCESS_HEADER_DIAGRAM = "process.header.diagram";
   String PROCESS_NO_DIAGRAM = "process.no.diagram";
@@ -216,9 +216,14 @@ public interface Messages {
   String PROCESS_SUSPEND_POPUP_TIME_NOW = "process.suspend.popup.time.now";
   String PROCESS_SUSPEND_POPUP_TIME_DATE = "process.suspend.popup.time.date";
   String PROCESS_SUSPEND_POPUP_INCLUDE_PROCESS_INSTANCES_DESCRIPTION = "process.suspend.popup.process.instances.description";
+  String PROCESS_SUSPENDED="process.suspended";
+  String PROCESS_ACTIVE="process.active";
   String PROCESS_TOXML_FAILED = "process.toxml.failed";
   String PROCESS_CONVERT = "process.convert";
   String PROCESS_EXPORT = "process.export";
+  String PROCESS_NODE_NEW = "process.node.new";
+  String PROCESS_NODE_NEW_POPUP_CAPTION = "process.node.new.popup.caption";
+
   String PROCESS_EDITOR_CHOICE = "process.editor.choice";
   String PROCESS_EDITOR_MODELER = "process.editor.modeler";
   String PROCESS_EDITOR_MODELER_DESCRIPTION = "process.editor.modeler.description";
@@ -249,7 +254,7 @@ public interface Messages {
   String PROCESS_EDITOR_PROPERTY_TYPE_NUMBER = "process.editor.property.type.number";
   String PROCESS_EDITOR_PROPERTY_TYPE_DATE = "process.editor.property.type.date";
   String PROCESS_EDITOR_LOADING_ERROR = "process.editor.loading.error";
-  
+
   String PROCESS_INSTANCE_DELETE = "process.instance.delete";
   String PROCESS_INSTANCE_DELETE_POPUP_TITLE = "process.instance.delete.popup.title";
   String PROCESS_INSTANCE_DELETE_POPUP_DESCRIPTION = "process.instance.delete.popup.description";
@@ -280,7 +285,7 @@ public interface Messages {
   String PROCESS_DELETE_POPUP_CAPTION = "process.delete.popup.caption";
   String PROCESS_DELETE_POPUP_MESSAGE = "process.delete.popup.message";
   String PROCESS_DELETE_POPUP_DELETE_BUTTON = "process.delete.popup.delete.button";
-  
+
   // Reporting menu
   String REPORTING_MENU_RUN_REPORTS = "reporting.menu.run.reports";
   String REPORTING_MENU_SAVED_REPORTS = "reporting.menu.saved.reports";
@@ -291,7 +296,7 @@ public interface Messages {
   String REPORTING_SAVE_POPUP_NAME_EXISTS = "reporting.save.popup.name.exists";
   String REPORTING_SAVE_POPUP_NAME_TOO_LONG = "reporting.save.popup.name.too.long";
   String REPORTING_CREATE_TIME = "reporting.report.created";
-  
+
   // Management menu
   String MGMT_MENU_DATABASE = "management.menu.database";
   String MGMT_MENU_DEPLOYMENTS = "management.menu.deployments";
@@ -304,7 +309,7 @@ public interface Messages {
   String MGMT_MENU_GROUPS = "management.menu.groups";
   String MGMT_MENU_ADMINISTRATION = "management.menu.admin";
   String MGMT_MENU_CRYSTALBALL = "management.menu.crystalball";
-  
+
   // Job page
   String JOB_EXECUTE = "job.execute";
   String JOB_DELETE = "job.delete";
@@ -321,7 +326,7 @@ public interface Messages {
   String JOB_NOT_EXECUTED = "job.not.executed";
   String JOB_SUSPEND_PROCESSDEFINITION = "job.suspend.processdefinition";
   String JOB_ACTIVATE_PROCESSDEFINITION = "job.activate.processdefinition";
-  
+
   // Deployment page
   String DEPLOYMENT_DELETE = "deployment.delete";
   String DEPLOYMENT_CREATE_TIME = "deployment.create.time";
@@ -339,7 +344,7 @@ public interface Messages {
   String DEPLOYMENT_DELETE_POPUP_CAPTION = "deployment.delete.popup.caption";
   String DEPLOYMENT_DELETE_POPUP_WARNING = "deployment.delete.popup.warning";
   String DEPLOYMENT_DELETE_POPUP_DELETE_BUTTON = "deployment.delete.popup.delete.button";
-  
+
   // Import to model workspace
   String MODEL_IMPORT = "model.import";
   String MODEL_IMPORT_DESCRIPTION = "model.import.description";
@@ -349,17 +354,17 @@ public interface Messages {
   String MODEL_IMPORT_INVALID_BPMNDI = "model.import.invalid.bpmndi";
   String MODEL_IMPORT_INVALID_BPMNDI_EXPLANATION = "model.import.invalid.bpmndi.explanation";
   String MODEL_IMPORT_INVALID_BPMN_EXPLANATION = "model.import.invalid.bpmn.explanation";
-  
+
   String MODEL_ACTION = "model.action";
-  
+
   String MODEL_DEPLOY_POPUP_CAPTION = "model.deploy.popup.caption";
   String MODEL_DEPLOY_NAME = "model.deploy.name";
   String MODEL_DEPLOY_GENERATE_REPORTS = "model.deploy.generate.reports";
   String MODEL_DEPLOY_BUTTON_DEPLOY = "model.deploy.button.deploy";
-  
+
   // Database page
   String DATABASE_NO_ROWS = "database.no.rows";
-  
+
   // User page
   String USER_HEADER_DETAILS = "user.header.details";
   String USER_HEADER_GROUPS = "user.header.groups";
@@ -383,7 +388,7 @@ public interface Messages {
   String USER_CONFIRM_DELETE_GROUP = "user.confirm.delete.group";
   String USER_SELECT_GROUPS = "user.select.groups";
   String USER_SELECT_GROUPS_POPUP = "user.select.groups.popup";
-  
+
   // Group page
   String GROUP_HEADER_DETAILS = "group.header.details";
   String GROUP_HEADER_USERS = "group.header.users";
@@ -397,7 +402,7 @@ public interface Messages {
   String GROUP_NO_MEMBERS = "group.no.members";
   String GROUP_SELECT_MEMBERS = "group.select.members";
   String GROUP_DELETE = "group.delete";
-  
+
   // Running process instances page
   String ADMIN_MENU_RUNNING = "admin.menu.running";
   String ADMIN_MENU_COMPLETED = "admin.menu.completed";
@@ -411,7 +416,7 @@ public interface Messages {
   String ADMIN_STARTED_BY = "admin.started.by";
   String ADMIN_START_ACTIVITY = "admin.start.activity";
   String ADMIN_FINISHED = "admin.finished";
-  
+
   // Database settings page
   String DATABASE_TITLE = "database.title";
   String DATABASE_TYPE = "database.type";
@@ -421,7 +426,7 @@ public interface Messages {
   String DATABASE_DATASOURCE_CLASS = "database.datasource.class";
   String DATABASE_DATASOURCE_URL = "database.datasource.url";
   String DATABASE_JDBC_URL = "database.jdbc.url";
-  
+
   // Upload
   String UPLOAD_SELECT = "upload.select";
   String UPLOAD_DROP = "upload.drop";
@@ -435,21 +440,21 @@ public interface Messages {
   String RELATED_CONTENT_NAME_REQUIRED = "related.content.name.required";
   String RELATED_CONTENT_DESCRIPTION = "related.content.description";
   String RELATED_CONTENT_CREATE = "related.content.create";
-  
+
   String RELATED_CONTENT_TYPE_URL = "related.content.type.url";
   String RELATED_CONTENT_TYPE_URL_URL = "related.content.type.url.url";
   String RELATED_CONTENT_TYPE_URL_URL_REQUIRED = "related.content.type.url.url.required";;
   String RELATED_CONTENT_TYPE_URL_HELP = "related.content.type.url.help";
-  
+
   String RELATED_CONTENT_TYPE_FILE = "related.content.type.file";
   String RELATED_CONTENT_TYPE_FILE_HELP = "related.content.type.file.help";
   String RELATED_CONTENT_TYPE_FILE_UPLOADED = "related.content.type.file.uploaded";
   String RELATED_CONTENT_TYPE_FILE_REQUIRED = "related.content.type.file.required";
   String RELATED_CONTENT_CONFIRM_DELETE = "related.content.confirm.delete";
   String RELATED_CONTENT_SHOW_FULL_SIZE = "related.content.show.full.size";
-  
+
   String RELATED_CONTENT_TYPE_EMAIL = "related.content.type.email";
-  
+
   // People involvement
   String PEOPLE_SEARCH = "people.search";
   String PEOPLE_INVOLVE_POPUP_CAPTION = "people.involve.popup.caption";
@@ -464,7 +469,7 @@ public interface Messages {
   String EMAIL_RECEIVED_DATE = "email.received.date";
   String EMAIL_HTML_CONTENT = "email.html.content";
   String EMAIL_RECIPIENTS = "email.recipients";
-  
+
   // Crystalball
   String CRYSTALBALL_BUTTON_REPLAY = "crystalball.button.replay";
   String CRYSTALBALL_BUTTON_NEXTEVENT = "crystalball.button.nextevent";
@@ -475,7 +480,7 @@ public interface Messages {
   String TIME_UNIT_MOMENTS = "time.unit.moments";
   String TIME_UNIT_PAST = "time.unit.past";
   String TIME_UNIT_FUTURE = "time.unit.future";
-  
+
   String TIME_UNIT_MINUTE = "time.unit.minute";
   String TIME_UNIT_MINUTES = "time.unit.minutes";
   String TIME_UNIT_HOUR = "time.unit.hour";
@@ -489,7 +494,9 @@ public interface Messages {
   String TIME_UNIT_YEAR = "time.unit.year";
   String TIME_UNIT_YEARS = "time.unit.years";
   String TIME_UNIT_JUST_NOW = "time.unit.just.now";
-  
+
   String MONTH_PREFIX = "month.";
 
+  String NODE_PARENT = "process.node.parent";
+  String NODE_KEY = "process.node.key";
 }

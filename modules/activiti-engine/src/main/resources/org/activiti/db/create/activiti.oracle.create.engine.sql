@@ -190,6 +190,13 @@ create table ACT_EVT_LOG (
     primary key (LOG_NR_)
 );
 
+create table GERA_PROC_STRUCT (
+    key VARCHAR(64),
+    parentKey VARCHAR(64),
+    title VARCHAR(200),
+    inserted TIMESTAMP(6) not null
+);
+
 create sequence act_evt_log_seq;
 
 create index ACT_IDX_EXEC_BUSKEY on ACT_RU_EXECUTION(BUSINESS_KEY_);

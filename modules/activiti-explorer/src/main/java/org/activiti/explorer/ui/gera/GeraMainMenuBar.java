@@ -10,31 +10,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.explorer.ui.mainlayout;
+package org.activiti.explorer.ui.gera;
 
-import org.activiti.explorer.ui.NoParamComponentFactory;
-import org.activiti.explorer.ui.alfresco.AlfrescoMainMenuBar;
-import org.activiti.explorer.ui.gera.GeraMainMenuBar;
+import org.activiti.explorer.ui.mainlayout.MainMenuBar;
 
 
 /**
  * @author Joram Barrez
  */
-public class MainMenuBarFactory extends NoParamComponentFactory<MainMenuBar> {
+public class GeraMainMenuBar extends MainMenuBar {
 
+  private static final long serialVersionUID = 1L;
+  
   @Override
-  protected Class<? extends MainMenuBar> getGeraComponentClass() {
-    return GeraMainMenuBar.class;
+  protected void initButtons() {
+    // In Alfresco admin console, only mgmt should be accessible
+    // so there is no point in offering any buttons
   }
-
+  
   @Override
-  protected Class<AlfrescoMainMenuBar> getAlfrescoComponentClass() {
-    return AlfrescoMainMenuBar.class;
+  public synchronized void setMainNavigation(String navigation) {
+    // Not needed since there are no buttons in the menu
   }
-
+  
   @Override
-  protected Class<MainMenuBar> getDefaultComponentClass() {
-    return MainMenuBar.class;
+  protected boolean useProfile() {
+    // Only show logout button, profile is not used in alfresco
+    return false;
   }
-
 }

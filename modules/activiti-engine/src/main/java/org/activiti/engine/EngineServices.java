@@ -21,6 +21,8 @@ package org.activiti.engine;
 public interface EngineServices {
 
   RepositoryService getRepositoryService();
+
+  GeraCategoryService getGeraCategoryService();
   
   RuntimeService getRuntimeService();
   

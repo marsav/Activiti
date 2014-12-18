@@ -34,31 +34,14 @@ import java.util.Set;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.activiti.engine.ActivitiException;
-import org.activiti.engine.FormService;
-import org.activiti.engine.HistoryService;
-import org.activiti.engine.IdentityService;
-import org.activiti.engine.ManagementService;
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
+import org.activiti.engine.*;
 import org.activiti.engine.cfg.ProcessEngineConfigurator;
 import org.activiti.engine.delegate.event.ActivitiEventDispatcher;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
 import org.activiti.engine.delegate.event.ActivitiEventType;
 import org.activiti.engine.delegate.event.impl.ActivitiEventDispatcherImpl;
 import org.activiti.engine.form.AbstractFormType;
-import org.activiti.engine.impl.FormServiceImpl;
-import org.activiti.engine.impl.HistoryServiceImpl;
-import org.activiti.engine.impl.IdentityServiceImpl;
-import org.activiti.engine.impl.ManagementServiceImpl;
-import org.activiti.engine.impl.ProcessEngineImpl;
-import org.activiti.engine.impl.RepositoryServiceImpl;
-import org.activiti.engine.impl.RuntimeServiceImpl;
-import org.activiti.engine.impl.ServiceImpl;
-import org.activiti.engine.impl.TaskServiceImpl;
+import org.activiti.engine.impl.*;
 import org.activiti.engine.impl.bpmn.data.ItemInstance;
 import org.activiti.engine.impl.bpmn.deployer.BpmnDeployer;
 import org.activiti.engine.impl.bpmn.parser.BpmnParseHandlers;
@@ -253,6 +236,7 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   protected TaskService taskService = new TaskServiceImpl(this);
   protected FormService formService = new FormServiceImpl();
   protected ManagementService managementService = new ManagementServiceImpl();
+  protected GeraCategoryService geraCategoryService = new GeraCategoryServiceImpl();
   
   // COMMAND EXECUTORS ////////////////////////////////////////////////////////
   
@@ -537,11 +521,15 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     initService(taskService);
     initService(formService);
     initService(managementService);
+    initService(geraCategoryService);
   }
 
   protected void initService(Object service) {
     if (service instanceof ServiceImpl) {
       ((ServiceImpl)service).setCommandExecutor(commandExecutor);
+    }
+    if (service instanceof GeraCategoryServiceImpl) {
+      ((GeraCategoryServiceImpl) service).setDataSource(dataSource);
     }
   }
   
@@ -1440,7 +1428,11 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
   public RuntimeService getRuntimeService() {
     return runtimeService;
   }
-  
+
+  public GeraCategoryService getGeraCategoryService() {
+    return geraCategoryService;
+  }
+
   public ProcessEngineConfigurationImpl setRuntimeService(RuntimeService runtimeService) {
     this.runtimeService = runtimeService;
     return this;

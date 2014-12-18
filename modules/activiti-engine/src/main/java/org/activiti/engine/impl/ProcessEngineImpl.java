@@ -14,15 +14,7 @@ package org.activiti.engine.impl;
 
 import java.util.Map;
 
-import org.activiti.engine.FormService;
-import org.activiti.engine.HistoryService;
-import org.activiti.engine.IdentityService;
-import org.activiti.engine.ManagementService;
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
-import org.activiti.engine.RepositoryService;
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.TaskService;
+import org.activiti.engine.*;
 import org.activiti.engine.delegate.event.ActivitiEventType;
 import org.activiti.engine.delegate.event.impl.ActivitiEventBuilder;
 import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
@@ -43,6 +35,7 @@ public class ProcessEngineImpl implements ProcessEngine {
 
   protected String name;
   protected RepositoryService repositoryService;
+  protected GeraCategoryService geraCategoryService;
   protected RuntimeService runtimeService;
   protected HistoryService historicDataService;
   protected IdentityService identityService;
@@ -61,6 +54,7 @@ public class ProcessEngineImpl implements ProcessEngine {
     this.name = processEngineConfiguration.getProcessEngineName();
     this.repositoryService = processEngineConfiguration.getRepositoryService();
     this.runtimeService = processEngineConfiguration.getRuntimeService();
+    this.geraCategoryService = processEngineConfiguration.getGeraCategoryService();
     this.historicDataService = processEngineConfiguration.getHistoryService();
     this.identityService = processEngineConfiguration.getIdentityService();
     this.taskService = processEngineConfiguration.getTaskService();
@@ -138,7 +132,11 @@ public class ProcessEngineImpl implements ProcessEngine {
   public RepositoryService getRepositoryService() {
     return repositoryService;
   }
-  
+
+  @Override
+  public GeraCategoryService getGeraCategoryService() {
+    return geraCategoryService;
+  }
   public FormService getFormService() {
     return formService;
   }

@@ -42,20 +42,20 @@ import com.vaadin.ui.Table;
  * @author Tijs Rademakers
  */
 public class EditorProcessDefinitionPage extends AbstractTablePage {
-  
+
   private static final long serialVersionUID = 1L;
-  
+
   // Services
   protected transient RepositoryService repositoryService = ProcessEngines.getDefaultProcessEngine().getRepositoryService();
-  
+
   // UI
   protected String modelId;
   protected EditorProcessDefinitionDetailPanel detailPanel;
-  
+
   public EditorProcessDefinitionPage() {
     ExplorerApp.get().setCurrentUriFragment(new UriFragment(ProcessModelNavigator.PROCESS_MODEL_URI_PART));
   }
-  
+
   /**
    * Used when the page is reached through an URL.
    * The page will be built and the given process definition will be selected.
@@ -64,7 +64,7 @@ public class EditorProcessDefinitionPage extends AbstractTablePage {
     this();
     this.modelId = modelId;
   }
-  
+
   @Override
   protected void initUi() {
     super.initUi();
@@ -74,24 +74,24 @@ public class EditorProcessDefinitionPage extends AbstractTablePage {
       table.select(modelId);
     }
   }
-  
+
   @Override
   protected ToolBar createMenuBar() {
-   ProcessMenuBar menuBar = new ProcessMenuBar();
-   Button newModelButton = new Button(ExplorerApp.get().getI18nManager().getMessage(Messages.PROCESS_NEW));
-   newModelButton.addListener(new NewModelClickListener());
-   menuBar.addButton(newModelButton);
-   Button importModelButton = new Button(ExplorerApp.get().getI18nManager().getMessage(Messages.PROCESS_IMPORT));
-   importModelButton.addListener(new ImportModelClickListener());
-   menuBar.addButton(importModelButton);
-   return menuBar;
+    ProcessMenuBar menuBar = new ProcessMenuBar();
+    Button newModelButton = new Button(ExplorerApp.get().getI18nManager().getMessage(Messages.PROCESS_NEW));
+    newModelButton.addListener(new NewModelClickListener());
+    menuBar.addButton(newModelButton);
+    Button importModelButton = new Button(ExplorerApp.get().getI18nManager().getMessage(Messages.PROCESS_IMPORT));
+    importModelButton.addListener(new ImportModelClickListener());
+    menuBar.addButton(importModelButton);
+    return menuBar;
   }
-  
+
   @Override
   protected Table createList() {
     final Table processDefinitionTable = new Table();
     processDefinitionTable.addStyleName(ExplorerLayout.STYLE_PROCESS_DEFINITION_LIST);
-    
+
     // Set non-editable, selectable and full-size
     processDefinitionTable.setEditable(false);
     processDefinitionTable.setImmediate(true);
@@ -99,7 +99,7 @@ public class EditorProcessDefinitionPage extends AbstractTablePage {
     processDefinitionTable.setNullSelectionAllowed(false);
     processDefinitionTable.setSortDisabled(true);
     processDefinitionTable.setSizeFull();
-    
+
     // Listener to change right panel when clicked on a model
     processDefinitionTable.addListener(new Property.ValueChangeListener() {
       private static final long serialVersionUID = 1L;
@@ -108,21 +108,21 @@ public class EditorProcessDefinitionPage extends AbstractTablePage {
         showProcessDefinitionDetail((String) event.getProperty().getValue());
       }
     });
-    
+
     // Create columns
     processDefinitionTable.addGeneratedColumn("icon", new ThemeImageColumnGenerator(Images.PROCESS_22));
     processDefinitionTable.setColumnWidth("icon", 22);
-    
+
     processDefinitionTable.addContainerProperty("name", String.class, null);
     processDefinitionTable.setColumnHeaderMode(Table.COLUMN_HEADER_MODE_HIDDEN);
-    
+
     List<Model> modelList = repositoryService.createModelQuery().list();
     for (Model modelData : modelList) {
       Item item = processDefinitionTable.addItem(modelData.getId());
       item.getItemProperty("name").setValue(modelData.getName());
     }
-    
-    
+
+
     return processDefinitionTable;
   }
 

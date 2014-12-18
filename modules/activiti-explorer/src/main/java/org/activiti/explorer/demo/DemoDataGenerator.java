@@ -14,12 +14,7 @@
 package org.activiti.explorer.demo;
 
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import org.activiti.editor.constants.ModelDataJsonConstants;
 import org.activiti.engine.IdentityService;
@@ -187,32 +182,112 @@ public class DemoDataGenerator implements ModelDataJsonConstants {
     String deploymentName = "Demo processes";
     List<Deployment> deploymentList = repositoryService.createDeploymentQuery().deploymentName(deploymentName).list();
     
-    if (deploymentList == null || deploymentList.isEmpty()) {
-      repositoryService.createDeployment()
-        .name(deploymentName)
-        .addClasspathResource("org/activiti/explorer/demo/process/createTimersProcess.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/VacationRequest.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/VacationRequest.png")
-        .addClasspathResource("org/activiti/explorer/demo/process/FixSystemFailureProcess.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/FixSystemFailureProcess.png")
-        .addClasspathResource("org/activiti/explorer/demo/process/simple-approval.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/Helpdesk.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/Helpdesk.png")
-        .addClasspathResource("org/activiti/explorer/demo/process/reviewSalesLead.bpmn20.xml")
-        .deploy();
-    }
+//    if (deploymentList == null || deploymentList.isEmpty()) {
+//      repositoryService.createDeployment()
+//        .name(deploymentName)
+//        .addClasspathResource("org/activiti/explorer/demo/process/createTimersProcess.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/VacationRequest.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/VacationRequest.png")
+//        .addClasspathResource("org/activiti/explorer/demo/process/FixSystemFailureProcess.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/FixSystemFailureProcess.png")
+//        .addClasspathResource("org/activiti/explorer/demo/process/simple-approval.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/Helpdesk.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/Helpdesk.png")
+//        .addClasspathResource("org/activiti/explorer/demo/process/reviewSalesLead.bpmn20.xml")
+//        .deploy();
+//    }
+/*
+      String geraDeploymentName = "Gera processes";
+      List<String> cpRs = new ArrayList<String>();
+      cpRs.add("org/activiti/explorer/gera/process/confirmation-validate.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/confirmation-validate.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/more-data-provide.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.1-collect-agreement-data.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.2-decision-approval.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.2.1-specialist-and-supervisor-approval.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.3-estate-data-update-to-rc.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.4-estate-data-receive-from-rc.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.4-supervisor-approval.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.6-estate-release.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-4.7-estate-mark-unnecessary.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-5.1-estate-acquisition.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-5.2-estate-conservation.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-5.3-estate-sale.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-5.4-estate-liquidation.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-5.5-estate-transfer-to-municipality.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-5.6-estate-investment.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-6.1-estate-transfer-by-trust.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-6.2-estate-reception-by-trust.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-6.3-estate-transfer-with-agreement.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-7.1-estate-letting.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-7.2-estate-loan.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-7.3-estate-rent.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-7.4-demand-registration.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-8.1-provide-data.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-8.1.1-open-data-collection-period.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-8.1.2-close-data-collection-period.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-8.1.3-contract-termination.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-duomenu-pakrovimas.bpmn20.xml");
+      cpRs.add("org/activiti/explorer/gera/process/process-duomenu-pakrovimas-timer.bpmn20.xml");
+
     
-    String reportDeploymentName = "Demo reports";
-    deploymentList = repositoryService.createDeploymentQuery().deploymentName(reportDeploymentName).list();
-    if (deploymentList == null || deploymentList.isEmpty()) {
-      repositoryService.createDeployment()
-        .name(reportDeploymentName)
-        .addClasspathResource("org/activiti/explorer/demo/process/reports/taskDurationForProcessDefinition.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/reports/processInstanceOverview.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/reports/helpdeskFirstLineVsEscalated.bpmn20.xml")
-        .addClasspathResource("org/activiti/explorer/demo/process/reports/employeeProductivity.bpmn20.xml")
-        .deploy();
-    }
+      if (deploymentList == null || deploymentList.isEmpty()) {
+        int i=0;
+        for (String res:cpRs) {
+          repositoryService.createDeployment()
+                  .name(geraDeploymentName + " " + (++i))
+                  .addClasspathResource(res).deploy();
+        }
+        */
+
+
+//          repositoryService.createDeployment()
+//                  .name(geraDeploymentName)
+//                  .addClasspathResource("org/activiti/explorer/gera/process/confirmation-validate.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/more-data-provide.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.1-collect-agreement-data.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.2-decision-approval.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.2.1-specialist-and-supervisor-approval.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.3-estate-data-update-to-rc.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.4-estate-data-receive-from-rc.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.4-supervisor-approval.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.6-estate-release.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-4.7-estate-mark-unnecessary.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-5.1-estate-acquisition.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-5.2-estate-conservation.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-5.3-estate-sale.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-5.4-estate-liquidation.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-5.5-estate-transfer-to-municipality.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-5.6-estate-investment.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-6.1-estate-transfer-by-trust.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-6.2-estate-reception-by-trust.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-6.3-estate-transfer-with-agreement.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-7.1-estate-letting.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-7.2-estate-loan.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-7.3-estate-rent.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-7.4-demand-registration.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-8.1-provide-data.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-8.1.1-open-data-collection-period.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-8.1.2-close-data-collection-period.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-8.1.3-contract-termination.bpmn20.xml")
+//
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-duomenu-pakrovimas.bpmn20.xml")
+//                  .addClasspathResource("org/activiti/explorer/gera/process/process-duomenu-pakrovimas-timer.bpmn20.xml")
+//
+//                  .deploy();
+//      }
+
+//    String reportDeploymentName = "Demo reports";
+//    deploymentList = repositoryService.createDeploymentQuery().deploymentName(reportDeploymentName).list();
+//    if (deploymentList == null || deploymentList.isEmpty()) {
+//      repositoryService.createDeployment()
+//        .name(reportDeploymentName)
+//        .addClasspathResource("org/activiti/explorer/demo/process/reports/taskDurationForProcessDefinition.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/reports/processInstanceOverview.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/reports/helpdeskFirstLineVsEscalated.bpmn20.xml")
+//        .addClasspathResource("org/activiti/explorer/demo/process/reports/employeeProductivity.bpmn20.xml")
+//        .deploy();
+//    }
     
   }
 

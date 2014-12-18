@@ -17,7 +17,7 @@
     "properties" : [ {
       "id" : "name",
       "type" : "String",
-      "title" : "Name",
+      "title" : "Pavadinimas",
       "value" : "",
       "description" : "The descriptive name of the BPMN element.",
       "popular" : true,
@@ -25,7 +25,7 @@
     }, {
       "id" : "documentation",
       "type" : "Text",
-      "title" : "Documentation",
+      "title" : "Dokumentacija",
       "value" : "",
       "description" : "The descriptive name of the BPMN element.",
       "popular" : true
@@ -35,44 +35,44 @@
     "properties" : [ {
       "id" : "process_id",
       "type" : "String",
-      "title" : "Process identifier",
+      "title" : "Proceso identifikatorius",
       "value" : "process",
       "description" : "Unique identifier of the process definition.",
       "popular" : true
     }, {
       "id" : "process_author",
       "type" : "String",
-      "title" : "Process author",
+      "title" : "Proceso autorius",
       "value" : "",
       "description" : "Author of the process definition.",
       "popular" : false
     }, {
       "id" : "process_executable",
-	  "type" : "Choice",
-	  "title" : "Executable",
-	  "value" : "Yes",
-	  "description" : "Define if the process is executable.",
-	  "popular" : true,
-	  "items" : [ {
-	    "id" : "no",
-	    "title" : "No",
-	    "value" : "No"
-	  }, {
-	    "id" : "yes",
-	    "title" : "Yes",
-	    "value" : "Yes"
-	  }]
+      "type" : "Choice",
+      "title" : "Vykdomasis",
+      "value" : "Yes",
+      "description" : "Define if the process is executable.",
+      "popular" : true,
+      "items" : [ {
+        "id" : "no",
+        "title" : "Ne",
+        "value" : "No"
+      }, {
+        "id" : "yes",
+        "title" : "Taip",
+        "value" : "Yes"
+      }]
     }, {
       "id" : "process_version",
       "type" : "String",
-      "title" : "Process version string (documentation only)",
+      "title" : "Proceso versijos eilutė (tik dokumentacija)",
       "value" : "",
       "description" : "Version identifier for documentation purpose.",
       "popular" : false
     }, {
       "id" : "process_namespace",
       "type" : "String",
-      "title" : "Target namespace",
+      "title" : "Paskirties vardų erdvė",
       "value" : "http://www.activiti.org/processdef",
       "description" : "Target namespace for the process definition.",
       "popular" : false
@@ -82,39 +82,39 @@
     "properties" : [ {
       "id" : "formkeydefinition",
       "type" : "String",
-      "title" : "Form key",
+      "title" : "Formos raktas",
       "value" : "",
       "description" : "Form key of the user task.",
       "popular" : true
     }, {
       "id" : "duedatedefinition",
       "type" : "String",
-      "title" : "Due date",
+      "title" : "Atlikimo data",
       "value" : "",
       "description" : "Due date of the user task.",
       "popular" : true
     }, {
       "id" : "prioritydefinition",
       "type" : "String",
-      "title" : "Priority",
+      "title" : "Prioritetas",
       "value" : "",
       "description" : "Priority of the user task.",
       "popular" : true
     }, {
       "id" : "categoryDefinition",
       "type" : "String",
-      "title" : "Category",
+      "title" : "Kategorija",
       "value" : "",
       "description" : "Category of the user task.",
       "popular" : true
     }
-	 ]
+    ]
   }, {
     "name" : "usertaskassignment",
     "properties" : [ {
       "id" : "usertaskassignment",
       "type" : "Complex",
-      "title" : "Assignments",
+      "title" : "Paskyrimai",
       "value" : "",
       "description" : "Assignment definition for the user task",
       "popular" : true,
@@ -128,25 +128,25 @@
         "optional" : false,
         "items" : [ {
           "id" : "c1",
-          "title" : "Assignee",
+          "title" : "EN* Assignee",
           "title_de" : "Performer",
           "value" : "assignee",
           "refToView" : ""
         }, {
           "id" : "c2",
-          "title" : "Candidate users",
+          "title" : "EN* Candidate users",
           "title_de" : "HumanPerformer",
           "value" : "candidateUsers",
           "refToView" : ""
         }, {
           "id" : "c3",
-          "title" : "Candidate groups",
+          "title" : "EN* Candidate groups",
           "title_de" : "PotentialOwner",
           "value" : "candidateGroups",
           "refToView" : ""
         }, {
           "id" : "c4",
-          "title" : "Owner",
+          "title" : "EN* Owner",
           "title_de" : "Owner",
           "value" : "owner",
           "refToView" : ""
@@ -168,7 +168,7 @@
     "properties" : [ {
       "id" : "customidentitylinks",
       "type" : "Complex",
-      "title" : "Identity Links",
+      "title" : "Tapatybės nuorodos",
       "value" : "",
       "description" : "Custom Assignment definition for the user task",
       "popular" : true,
@@ -181,13 +181,13 @@
         "optional" : false,
         "items" : [ {
           "id" : "c1",
-          "title" : "User",
+          "title" : "EN* User",
           "title_de" : "User",
           "value" : "user",
           "refToView" : ""
         }, {
           "id" : "c2",
-          "title" : "Group",
+          "title" : "EN* Group",
           "title_de" : "Group",
           "value" : "group",
           "refToView" : ""
@@ -217,7 +217,7 @@
     "properties" : [ {
       "id" : "formproperties",
       "type" : "multiplecomplex",
-      "title" : "Form properties",
+      "title" : "Formos savybės",
       "value" : "",
       "description" : "Definition of the form with a list of form properties",
       "popular" : true,
@@ -251,31 +251,31 @@
         "optional" : false,
         "items" : [ {
           "id" : "c1",
-          "title" : "String",
+          "title" : "EN* String",
           "title_de" : "String",
           "value" : "string",
           "refToView" : ""
         }, {
           "id" : "c2",
-          "title" : "Date",
+          "title" : "EN* Date",
           "title_de" : "Date",
           "value" : "date",
           "refToView" : ""
         }, {
           "id" : "c3",
-          "title" : "Long",
+          "title" : "EN* Long",
           "title_de" : "Long",
           "value" : "long",
           "refToView" : ""
         }, {
           "id" : "c4",
-          "title" : "Boolean",
+          "title" : "EN* Boolean",
           "title_de" : "Boolean",
           "value" : "boolean",
           "refToView" : ""
         }, {
           "id" : "c5",
-          "title" : "Enum",
+          "title" : "EN* Enum",
           "title_de" : "Enum",
           "value" : "enum",
           "refToView" : ""
@@ -310,11 +310,11 @@
         "optional" : false,
         "items" : [ {
           "id" : "yes",
-          "title" : "Yes",
+          "title" : "Taip",
           "value" : "Yes"
         }, {
           "id" : "no",
-          "title" : "No",
+          "title" : "Ne",
           "value" : "No"
         } ]
       }, {
@@ -327,11 +327,11 @@
         "optional" : false,
         "items" : [ {
           "id" : "yes",
-          "title" : "Yes",
+          "title" : "Taip",
           "value" : "Yes"
         }, {
           "id" : "no",
-          "title" : "No",
+          "title" : "Ne",
           "value" : "No"
         } ]
       }, {
@@ -344,11 +344,11 @@
         "optional" : false,
         "items" : [ {
           "id" : "yes",
-          "title" : "Yes",
+          "title" : "Taip",
           "value" : "Yes"
         }, {
           "id" : "no",
-          "title" : "No",
+          "title" : "Ne",
           "value" : "No"
         } ]
       }, {
@@ -380,7 +380,7 @@
     "properties" : [ {
       "id" : "tasklisteners",
       "type" : "multiplecomplex",
-      "title" : "Task listeners",
+      "title" : "Užduoties klausytojai",
       "value" : "",
       "description" : "Listeners for a user task",
       "popular" : true,
@@ -393,22 +393,22 @@
         "optional" : false,
         "items" : [ {
           "id" : "c1",
-          "title" : "Create",
+          "title" : "EN* Create",
           "value" : "create",
           "refToView" : ""
         }, {
           "id" : "c2",
-          "title" : "Assignment",
+          "title" : "EN* Assignment",
           "value" : "assignment",
           "refToView" : ""
         }, {
           "id" : "c3",
-          "title" : "Complete",
+          "title" : "EN* Complete",
           "value" : "complete",
           "refToView" : ""
         }, {
           "id" : "c4",
-          "title" : "All Events",
+          "title" : "EN* All Events",
           "value" : "all",
           "refToView" : ""
         } ]
@@ -471,35 +471,35 @@
     "properties" : [ {
       "id" : "servicetaskclass",
       "type" : "String",
-      "title" : "Class",
+      "title" : "Klasė",
       "value" : "",
       "description" : "Class that implements the service task logic.",
       "popular" : true
     }, {
       "id" : "servicetaskexpression",
       "type" : "String",
-      "title" : "Expression",
+      "title" : "Reiškinys",
       "value" : "",
       "description" : "Service task logic defined with an expression.",
       "popular" : true
     }, {
       "id" : "servicetaskdelegateexpression",
       "type" : "String",
-      "title" : "Delegate expression",
+      "title" : "Deleguoti reiškinį",
       "value" : "",
       "description" : "Service task logic defined with a delegate expression.",
       "popular" : true
     }, {
       "id" : "servicetaskresultvariable",
       "type" : "String",
-      "title" : "Result variable name",
+      "title" : "Rezultato kintamojo pavadinimas",
       "value" : "",
       "description" : "Process variable name to store the service task result.",
       "popular" : true
     }, {
       "id" : "servicetaskfields",
       "type" : "Complex",
-      "title" : "Class fields",
+      "title" : "Klasės laukai",
       "value" : "",
       "description" : "Field extensions",
       "popular" : true,
@@ -531,14 +531,14 @@
     "properties" : [ {
       "id" : "scriptformat",
       "type" : "String",
-      "title" : "Script format",
+      "title" : "EN* Script format",
       "value" : "",
       "description" : "Script format of the script task.",
       "popular" : true
     }, {
       "id" : "scripttext",
       "type" : "Text",
-      "title" : "Script",
+      "title" : "EN* Script",
       "value" : "",
       "description" : "Script text of the script task.",
       "popular" : true
@@ -548,45 +548,45 @@
     "properties" : [ {
       "id" : "ruletask_class",
       "type" : "String",
-      "title" : "Class",
+      "title" : "Klasė",
       "value" : "",
       "description" : "Class of the rule task.",
       "popular" : true
     }, {
       "id" : "ruletask_variables_input",
       "type" : "String",
-      "title" : "Input variables",
+      "title" : "EN* Input variables",
       "value" : "",
       "description" : "Input variables of the rule task.",
       "popular" : true
     }, {
       "id" : "ruletask_result",
       "type" : "String",
-      "title" : "Result variable",
+      "title" : "EN* Result variable",
       "value" : "",
       "description" : "Result variable of the rule task.",
       "popular" : true
     }, {
       "id" : "ruletask_rules",
       "type" : "String",
-      "title" : "Rules",
+      "title" : "EN* Rules",
       "value" : "",
       "description" : "Rules of the rule task.",
       "popular" : true
     }, {
       "id" : "ruletask_exclude",
       "type" : "Choice",
-      "title" : "Exclude",
+      "title" : "EN* Exclude",
       "value" : "No",
       "description" : "Use the rules property as exclusion.",
       "popular" : true,
       "items" : [ {
         "id" : "no",
-        "title" : "No",
+        "title" : "Ne",
         "value" : "No"
       }, {
         "id" : "yes",
-        "title" : "Yes",
+        "title" : "Taip",
         "value" : "Yes"
       } ]
     } ]
@@ -595,56 +595,56 @@
     "properties" : [ {
       "id" : "mailtaskto",
       "type" : "Text",
-      "title" : "To",
+      "title" : "EN* To",
       "value" : "",
       "description" : "The recipients if the e-mail. Multiple recipients are defined in a comma-separated list.",
       "popular" : true
     }, {
       "id" : "mailtaskfrom",
       "type" : "Text",
-      "title" : "From",
+      "title" : "EN* From",
       "value" : "",
       "description" : "The sender e-mail address. If not provided, the default configured from address is used.",
       "popular" : true
     }, {
       "id" : "mailtasksubject",
       "type" : "Text",
-      "title" : "Subject",
+      "title" : "EN* Subject",
       "value" : "",
       "description" : "The subject of the e-mail.",
       "popular" : true
     }, {
       "id" : "mailtaskcc",
       "type" : "Text",
-      "title" : "Cc",
+      "title" : "EN* Cc",
       "value" : "",
       "description" : "The cc's of the e-mail. Multiple recipients are defined in a comma-separated list",
       "popular" : true
     }, {
       "id" : "mailtaskbcc",
       "type" : "Text",
-      "title" : "Bcc",
+      "title" : "EN* Bcc",
       "value" : "",
       "description" : "The bcc's of the e-mail. Multiple recipients are defined in a comma-separated list",
       "popular" : true
     }, {
       "id" : "mailtasktext",
       "type" : "Text",
-      "title" : "Text",
+      "title" : "EN* Text",
       "value" : "",
       "description" : "The content of the e-mail, in case one needs to send plain none-rich e-mails. Can be used in combination with html, for e-mail clients that don't support rich content. The client will then fall back to this text-only alternative.",
       "popular" : true
     }, {
       "id" : "mailtaskhtml",
       "type" : "Text",
-      "title" : "Html",
+      "title" : "EN* Html",
       "value" : "",
       "description" : "A piece of HTML that is the content of the e-mail.",
       "popular" : true
     }, {
       "id" : "mailtaskcharset",
       "type" : "String",
-      "title" : "Charset",
+      "title" : "EN* Charset",
       "value" : "",
       "description" : "Allows to change the charset of the email, which is necessary for many non-English languages. ",
       "popular" : true
@@ -654,14 +654,14 @@
     "properties" : [ {
       "id" : "callactivitycalledelement",
       "type" : "String",
-      "title" : "Called element",
+      "title" : "Iškviestas elementas",
       "value" : "",
       "description" : "Process reference.",
       "popular" : true
     }, {
       "id" : "callactivityinparameters",
       "type" : "Complex",
-      "title" : "In parameters",
+      "title" : "Įeinantys parametrai",
       "value" : "",
       "description" : "Definition of the input parameters",
       "popular" : true,
@@ -690,7 +690,7 @@
     }, {
       "id" : "callactivityoutparameters",
       "type" : "Complex",
-      "title" : "Out parameters",
+      "title" : "Išeinantys parametrai",
       "value" : "",
       "description" : "Definition of the output parameters",
       "popular" : true,
@@ -722,25 +722,25 @@
     "properties" : [ {
       "id" : "conditionsequenceflow",
       "type" : "Text",
-      "title" : "Flow condition",
+      "title" : "Eigos sąlyga",
       "value" : "",
       "description" : "The condition of the sequence flow",
       "popular" : true
     }, {
       "id" : "defaultflow",
       "type" : "Choice",
-      "title" : "Default flow",
+      "title" : "Numatyta eiga",
       "value" : "None",
       "description" : "Define the sequence flow as default",
       "popular" : true,
       "items" : [ {
         "id" : "none",
-        "title" : "Standard",
+        "title" : "EN* Standard",
         "title_de" : "Standard",
         "value" : "None"
       }, {
         "id" : "default",
-        "title" : "Default Flow",
+        "title" : "EN* Default Flow",
         "title_de" : "Standardfluss",
         "value" : "Default",
         "icon" : "connector/list/type.default.png",
@@ -749,18 +749,18 @@
     }, {
       "id" : "conditionalflow",
       "type" : "Choice",
-      "title" : "Conditional flow",
+      "title" : "Sąlyginė eiga",
       "value" : "None",
       "description" : "Define the sequence flow with a condition",
       "popular" : true,
       "items" : [ {
         "id" : "none",
-        "title" : "Standard",
+        "title" : "EN* Standard",
         "title_de" : "Standard",
         "value" : "None"
       }, {
         "id" : "default",
-        "title" : "Conditional Flow",
+        "title" : "EN* Conditional Flow",
         "value" : "Conditional",
         "icon" : "connector/list/type.expression.png",
         "refToView" : "conditional"
@@ -771,18 +771,18 @@
     "properties" : [ {
       "id" : "cancelactivity",
       "type" : "Choice",
-      "title" : "Cancel activity",
+      "title" : "EN* Cancel activity",
       "value" : "yes",
       "description" : "Define activity cancelation",
       "popular" : true,
       "items" : [ {
         "id" : "yes",
-        "title" : "Yes",
+        "title" : "Taip",
         "title_de" : "Yes",
         "value" : "yes"
       }, {
         "id" : "no",
-        "title" : "No",
+        "title" : "Ne",
         "title_de" : "No",
         "value" : "no"
       } ]
@@ -792,21 +792,21 @@
     "properties" : [ {
       "id" : "timerdurationdefinition",
       "type" : "String",
-      "title" : "Time duration (e.g. PT5M)",
+      "title" : "EN* Time duration (e.g. PT5M)",
       "value" : "",
       "description" : "Define the timer with a ISO-8601 duration.",
       "popular" : true
     }, {
       "id" : "timerdatedefinition",
       "type" : "String",
-      "title" : "Time date in ISO-8601",
+      "title" : "EN* Time date in ISO-8601",
       "value" : "",
       "description" : "Define the timer with a ISO-8601 date definition.",
       "popular" : true
     }, {
       "id" : "timercycledefinition",
       "type" : "String",
-      "title" : "Time cycle (e.g. R3/PT10H)",
+      "title" : "EN* Time cycle (e.g. R3/PT10H)",
       "value" : "",
       "description" : "Define the timer with a ISO-8601 cycle.",
       "popular" : true
@@ -816,7 +816,7 @@
     "properties" : [ {
       "id" : "messageref",
       "type" : "String",
-      "title" : "Message reference",
+      "title" : "EN* Message reference",
       "value" : "",
       "description" : "Define the message name.",
       "popular" : true
@@ -826,7 +826,7 @@
     "properties" : [ {
       "id" : "signalref",
       "type" : "String",
-      "title" : "Signal reference",
+      "title" : "EN* Signal reference",
       "value" : "",
       "description" : "Define the signal name.",
       "popular" : true
@@ -836,7 +836,7 @@
     "properties" : [ {
       "id" : "errorref",
       "type" : "String",
-      "title" : "Error reference",
+      "title" : "Klaidos rodyklė",
       "value" : "",
       "description" : "Define the error name.",
       "popular" : true
@@ -846,14 +846,14 @@
     "properties" : [ {
       "id" : "initiator",
       "type" : "String",
-      "title" : "Initiator",
+      "title" : "Iniciatorius",
       "value" : "",
       "description" : "Initiator of the process.",
       "popular" : true
     }, {
       "id" : "formkeydefinition",
       "type" : "String",
-      "title" : "Form key",
+      "title" : "Formos raktas",
       "value" : "",
       "description" : "Form key of the start event.",
       "popular" : true
@@ -863,7 +863,7 @@
     "properties" : [ {
       "id" : "text",
       "type" : "String",
-      "title" : "Text",
+      "title" : "EN* Text",
       "value" : "",
       "description" : "The text of the text annotation.",
       "popular" : true,
@@ -874,33 +874,33 @@
     "properties" : [ {
       "id" : "asynchronousdefinition",
       "type" : "Choice",
-      "title" : "Asynchronous",
+      "title" : "Asinchroninis",
       "value" : "No",
       "description" : "Define the activity as asynchronous.",
       "popular" : true,
       "items" : [ {
         "id" : "no",
-        "title" : "No",
+        "title" : "Ne",
         "value" : "No"
       }, {
         "id" : "yes",
-        "title" : "Yes",
+        "title" : "Taip",
         "value" : "Yes"
       } ]
     }, {
       "id" : "exclusivedefinition",
       "type" : "Choice",
-      "title" : "Exclusive",
+      "title" : "Išskirtinis",
       "value" : "Yes",
       "description" : "Define the activity as exclusive.",
       "popular" : true,
       "items" : [ {
         "id" : "no",
-        "title" : "No",
+        "title" : "Ne",
         "value" : "No"
       }, {
         "id" : "yes",
-        "title" : "Yes",
+        "title" : "Taip",
         "value" : "Yes"
       } ]
     } ]
@@ -909,7 +909,7 @@
     "properties" : [ {
       "id" : "executionlisteners",
       "type" : "multiplecomplex",
-      "title" : "Execution listeners",
+      "title" : "Vykdymo klausytojai",
       "value" : "",
       "description" : "Listeners for an activity, process, sequence flow, start and end event.",
       "popular" : true,
@@ -922,17 +922,17 @@
         "optional" : false,
         "items" : [ {
           "id" : "c1",
-          "title" : "Start",
+          "title" : "EN* Start",
           "value" : "start",
           "refToView" : ""
         }, {
           "id" : "c2",
-          "title" : "End",
+          "title" : "EN* End",
           "value" : "end",
           "refToView" : ""
         }, {
           "id" : "c2",
-          "title" : "Take (only sequence flows)",
+          "title" : "EN* Take (only sequence flows)",
           "value" : "take",
           "refToView" : ""
         } ]
@@ -995,7 +995,7 @@
     "properties" : [ {
       "id" : "eventlisteners",
       "type" : "multiplecomplex",
-      "title" : "Event listeners",
+      "title" : "Įvykio klausytojai",
       "value" : "",
       "description" : "Event listeners for events related to the process definition.",
       "popular" : true,
@@ -1033,42 +1033,42 @@
         "optional" : true,
         "items" : [ {
           "id" : "attachment",
-          "title" : "Attachment",
+          "title" : "EN* Attachment",
           "value" : "attachment",
           "refToView" : ""
         }, {
           "id" : "comment",
-          "title" : "Comment",
+          "title" : "EN* Comment",
           "value" : "comment",
           "refToView" : ""
         }, {
           "id" : "execution",
-          "title" : "Execution",
+          "title" : "EN* Execution",
           "value" : "execution",
           "refToView" : ""
         }, {
           "id" : "identity-link",
-          "title" : "Indentity link",
+          "title" : "EN* Indentity link",
           "value" : "identity-link",
           "refToView" : ""
         }, {
           "id" : "job",
-          "title" : "Job",
+          "title" : "EN* Job",
           "value" : "job",
           "refToView" : ""
         }, {
           "id" : "process-definition",
-          "title" : "Process definition",
+          "title" : "EN* Process definition",
           "value" : "process-definition",
           "refToView" : ""
         }, {
           "id" : "process-instance",
-          "title" : "Process instance",
+          "title" : "EN* Process instance",
           "value" : "process-instance",
           "refToView" : ""
         }, {
           "id" : "execution",
-          "title" : "Execution",
+          "title" : "EN* Execution",
           "value" : "execution",
           "refToView" : ""
         } ]
@@ -1082,22 +1082,22 @@
         "optional" : true,
         "items" : [ {
           "id" : "signal",
-          "title" : "Signal",
+          "title" : "EN* Signal",
           "value" : "signal",
           "refToView" : ""
         }, {
           "id" : "globalSignal",
-          "title" : "Glocal signal",
+          "title" : "EN* Glocal signal",
           "value" : "globalSignal",
           "refToView" : ""
         }, {
           "id" : "message",
-          "title" : "Message",
+          "title" : "EN* Message",
           "value" : "message",
           "refToView" : ""
         }, {
           "id" : "error",
-          "title" : "Error",
+          "title" : "EN* Error",
           "value" : "error",
           "refToView" : ""
         } ]
@@ -1116,21 +1116,21 @@
     "properties" : [ {
       "id" : "customformdefinition",
       "type" : "Choice",
-      "title" : "Custom form",
+      "title" : "EN* Custom form",
       "value" : "",
       "description" : "Des A",
       "popular" : true,
       "items" : [ {
         "id" : "1",
-        "title" : "form 1",
+        "title" : "EN* form 1",
         "value" : "1"
       }, {
         "id" : "2",
-        "title" : "form 2",
+        "title" : "EN* form 2",
         "value" : "2"
       }, {
         "id" : "3",
-        "title" : "form 3",
+        "title" : "EN* form 3",
         "value" : "3"
       } ]
     } ]
@@ -1139,33 +1139,33 @@
     "properties" : [ {
       "id" : "looptype",
       "type" : "Choice",
-      "title" : "Loop type",
+      "title" : "Ciklo tipas",
       "value" : "None",
       "description" : "Repeated activity execution (parallel or sequential) can be displayed through different loop types",
       "popular" : false,
       "items" : [ {
         "id" : "c1",
-        "title" : "None",
+        "title" : "Nene",
         "title_de" : "Keine Schleife",
         "value" : "None",
         "refToView" : "none"
       }, {
         "id" : "c2",
-        "title" : "Standard",
+        "title" : "EN* Standard",
         "title_de" : "Standard",
         "value" : "Standard",
         "icon" : "activity/list/looptype.standard.png",
         "refToView" : "loop"
       }, {
         "id" : "c3",
-        "title" : "MI Parallel",
+        "title" : "EN* MI Parallel",
         "title_de" : "MI parallel",
         "value" : "Parallel",
         "icon" : "activity/list/mi.parallel.png",
         "refToView" : "parallel"
       }, {
         "id" : "c4",
-        "title" : "MI Sequential",
+        "title" : "EN* MI Sequential",
         "title_de" : "MI sequentialisiert",
         "value" : "Sequential",
         "icon" : "activity/list/mi.sequential.png",
@@ -1177,7 +1177,7 @@
     "properties" : [ {
       "id" : "dataproperties",
       "type" : "Complex",
-      "title" : "Data properties",
+      "title" : "Duomenų savybės",
       "value" : "",
       "description" : "Definition of the data object properties",
       "popular" : true,
@@ -1206,32 +1206,32 @@
         "popular" : true,
         "items" : [ {
           "id" : "Boolean",
-          "title" : "Boolean",
+          "title" : "EN* Boolean",
           "value" : "boolean",
           "refToView" : ""
         }, {
           "id" : "Date",
-          "title" : "Date",
+          "title" : "EN* Date",
           "value" : "datetime",
           "refToView" : ""
         }, {
           "id" : "Double",
-          "title" : "Double",
+          "title" : "EN* Double",
           "value" : "double",
           "refToView" : ""
         }, {
           "id" : "Integer",
-          "title" : "Integer",
+          "title" : "EN* Integer",
           "value" : "int",
           "refToView" : ""
         }, {
           "id" : "Long",
-          "title" : "Long",
+          "title" : "EN* Long",
           "value" : "long",
           "refToView" : ""
         }, {
           "id" : "String",
-          "title" : "String",
+          "title" : "EN* String",
           "value" : "string",
           "refToView" : ""
         } ]
@@ -1250,51 +1250,51 @@
     "properties" : [ {
       "id" : "multiinstance_sequential",
       "type" : "Choice",
-      "title" : "Sequential (Multi-instance)",
+      "title" : "Nuoseklus (Multi-paleidimai)",
       "value" : "Yes",
       "description" : "Define the multi instance as sequential.",
       "popular" : true,
       "items" : [ {
         "id" : "no",
-        "title" : "No",
+        "title" : "Ne",
         "value" : "No"
       }, {
         "id" : "yes",
-        "title" : "Yes",
+        "title" : "Taip",
         "value" : "Yes"
       } ]
     }, {
       "id" : "multiinstance_cardinality",
       "type" : "String",
-      "title" : "Cardinality (Multi-instance)",
+      "title" : "Kardinalumas (Multi-paleidimai)",
       "value" : "",
       "description" : "Define the cardinality of multi instance.",
       "popular" : true
     }, {
       "id" : "multiinstance_collection",
       "type" : "String",
-      "title" : "Collection (Multi-instance)",
+      "title" : "Rinkinys (Multi-paleidimai)",
       "value" : "",
       "description" : "Define the collection for the multi instance.",
       "popular" : true
     }, {
       "id" : "multiinstance_variable",
       "type" : "String",
-      "title" : "Element variable (Multi-instance)",
+      "title" : "Elemento kintamasis (Multi-paleidimai)",
       "value" : "",
       "description" : "Define the element variable for the multi instance.",
       "popular" : true
     }, {
       "id" : "multiinstance_condition",
       "type" : "String",
-      "title" : "Completion condition (Multi-instance)",
+      "title" : "Užbaigimo būsena (Multi-paleidimai)",
       "value" : "",
       "description" : "Define the completion condition for the multi instance.",
       "popular" : true
     }, {
       "id" : "isforcompensation",
       "type" : "Boolean",
-      "title" : "Is for compensation",
+      "title" : "Kompensavimo žymė",
       "value" : "false",
       "description" : "A flag that identifies whether this activity is intended for the purposes of compensation.",
       "popular" : false,
@@ -1304,7 +1304,7 @@
   "stencils" : [ {
     "type" : "node",
     "id" : "BPMNDiagram",
-    "title" : "BPMN-Diagram",
+    "title" : "BPMN diagrama",
     "description" : "A BPMN 2.0 diagram.",
     "view" : "diagram.svg",
     "icon" : "diagram.png",
@@ -1316,188 +1316,188 @@
   }, {
     "type" : "node",
     "id" : "StartNoneEvent",
-    "title" : "Start event",
-    "description" : "A start event without a specific trigger",
+    "title" : "Pradžios įvykis",
+    "description" : "Pradžios įvykis be specifinio iniciatoriaus",
     "view" : "startevent/none.svg",
     "icon" : "startevent/none.png",
-    "groups" : [ "Start Events" ],
+    "groups" : [ "Pradžios elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "formdefinition", "nonestarteventbase", "executionlistenersbase" ],
     "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "StartTimerEvent",
-    "title" : "Start timer event",
-    "description" : "A start event with a timer trigger",
+    "title" : "Pradžios laikmačio įvykis",
+    "description" : "Pradžios įvykis su laikmačio iniciatoriumi",
     "view" : "startevent/timer.svg",
     "icon" : "startevent/timer.png",
-    "groups" : [ "Start Events" ],
+    "groups" : [ "Pradžios elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "timerdefinition", "executionlistenersbase" ],
     "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "StartMessageEvent",
-    "title" : "Start message event",
-    "description" : "A start event with a message trigger",
+    "title" : "Pradžios pranešimo įvykis",
+    "description" : "Pradžios įvykis su pranešimo iniciatoriumi",
     "view" : "startevent/message.svg",
     "icon" : "startevent/message.png",
-    "groups" : [ "Start Events" ],
+    "groups" : [ "Pradžios elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "messagerefdefinition", "executionlistenersbase" ],
     "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "StartErrorEvent",
-    "title" : "Start error event",
-    "description" : "A start event that catches a thrown BPMN error",
+    "title" : "Pradžios klaidos įvykis",
+    "description" : "Pradžios įvykis, kuris pagauna BPMN klaidą",
     "view" : "startevent/error.svg",
     "icon" : "startevent/error.png",
-    "groups" : [ "Start Events" ],
+    "groups" : [ "Pradžios elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "errorrefdefinition", "executionlistenersbase" ],
     "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "UserTask",
-    "title" : "User task",
-    "description" : "A manual task assigned to a specific person",
+    "title" : "Naudotojo užduotis",
+    "description" : "Užduotis priskirta žmogui",
     "view" : "activity/usertask.svg",
     "icon" : "activity/list/type.user.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "usertaskbase", "usertaskassignment", "customidentitylinks", "formdefinition", "tasklistenersbase", "asynchronousbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "ServiceTask",
-    "title" : "Service task",
-    "description" : "An automatic task with service logic",
+    "title" : "Tarnybinė užduotis",
+    "description" : "Automatinė užduotis su tarnybine logika",
     "view" : "activity/servicetask.svg",
     "icon" : "activity/list/type.service.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "servicetaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "ScriptTask",
-    "title" : "Script task",
-    "description" : "An automatic task with script logic",
+    "title" : "Skripto užduotis",
+    "description" : "Automatinė užduotis su skripto logika",
     "view" : "activity/scripttask.svg",
     "icon" : "activity/list/type.script.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "scripttaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "BusinessRule",
-    "title" : "Business rule task",
-    "description" : "An automatic task with rule logic",
+    "title" : "Verslo taisyklės užduotis",
+    "description" : "Automatinė užduotis su taisyklės logika",
     "view" : "activity/businessruletask.svg",
     "icon" : "activity/list/type.business.rule.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "ruletaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "ReceiveTask",
-    "title" : "Receive task",
-    "description" : "An task that waits for a signal",
+    "title" : "Priėmimo užduotis",
+    "description" : "Užduotis, kuri laukia signalo",
     "view" : "activity/receivetask.svg",
     "icon" : "activity/list/type.receive.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "ManualTask",
-    "title" : "Manual task",
-    "description" : "An automatic task with no logic",
+    "title" : "Rankinė užduotis",
+    "description" : "Automatinė užduotis, be logikos",
     "view" : "activity/manualtask.svg",
     "icon" : "activity/list/type.manual.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "MailTask",
-    "title" : "Mail task",
-    "description" : "An mail task",
+    "title" : "Pašto užduotis",
+    "description" : "Pašto siuntimo užduotis",
     "view" : "activity/sendtask.svg",
     "icon" : "activity/list/type.send.png",
-    "groups" : [ "Activities" ],
+    "groups" : [ "Veiklos" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "mailtaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "SubProcess",
-    "title" : "Sub process",
+    "title" : "Paprocesis",
     "description" : "A sub process scope",
     "view" : "activity/subprocess.expanded.svg",
     "icon" : "activity/expanded.subprocess.png",
-    "groups" : [ "Structural" ],
+    "groups" : [ "Struktūriniai elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "datadefinition" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "all" ]
   }, {
     "type" : "node",
     "id" : "EventSubProcess",
-    "title" : "Event sub process",
+    "title" : "Įvykio paprocesis",
     "description" : "A event sub process scope",
     "view" : "activity/event.subprocess.svg",
     "icon" : "activity/event.subprocess.png",
-    "groups" : [ "Structural" ],
+    "groups" : [ "Struktūriniai elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "all" ]
   }, {
     "type" : "node",
     "id" : "CallActivity",
-    "title" : "Call activity",
-    "description" : "A call activity",
+    "title" : "Iškvietimo veikla",
+    "description" : "Iškvietimo veikla",
     "view" : "activity/callactivity.svg",
     "icon" : "activity/task.png",
-    "groups" : [ "Structural" ],
+    "groups" : [ "Struktūriniai elementai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "callactivitybase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "all" ]
   }, {
     "type" : "node",
     "id" : "ExclusiveGateway",
-    "title" : "Exclusive gateway",
+    "title" : "Sprendimo vartai",
     "description" : "A choice gateway",
     "view" : "gateway/exclusive.databased.svg",
     "icon" : "gateway/exclusive.databased.png",
-    "groups" : [ "Gateways" ],
+    "groups" : [ "Vartai" ],
     "propertyPackages" : [ "elementbase", "baseattributes" ],
     "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "ParallelGateway",
-    "title" : "Parallel gateway",
+    "title" : "Lygiagretūs vartai",
     "description" : "A parallel gateway",
     "view" : "gateway/parallel.svg",
     "icon" : "gateway/parallel.png",
-    "groups" : [ "Gateways" ],
+    "groups" : [ "Vartai" ],
     "propertyPackages" : [ "elementbase", "baseattributes" ],
     "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "InclusiveGateway",
-    "title" : "Inclusive gateway",
+    "title" : "Apimantys vartai",
     "description" : "An inclusive gateway",
     "view" : "gateway/inclusive.svg",
     "icon" : "gateway/inclusive.png",
-    "groups" : [ "Gateways" ],
+    "groups" : [ "Vartai" ],
     "propertyPackages" : [ "elementbase", "baseattributes" ],
     "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "EventGateway",
-    "title" : "Event gateway",
+    "title" : "Įvykio vartai",
     "description" : "An event gateway",
     "view" : "gateway/eventbased.svg",
     "icon" : "gateway/eventbased.png",
-    "groups" : [ "Gateways" ],
+    "groups" : [ "Vartai" ],
     "propertyPackages" : [ "elementbase", "baseattributes" ],
     "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
   }, {
     "type" : "node",
     "id" : "Pool",
-    "title" : "Pool",
-    "groups" : ["Swimlanes"],
+    "title" : "Konteineris",
+    "groups" : ["Sritys"],
     "description" : "Pools and Lanes represent responsibilities for activities in a process. A pool or a lane can be an organization, a role or a system.",
     "view" : "swimlane/pool.svg",
     "icon" : "swimlane/pool.png",
@@ -1507,8 +1507,8 @@
   }, {
     "type" : "node",
     "id" : "Lane",
-    "title" : "Lane",
-    "groups" : ["Swimlanes"],
+    "title" : "Juosta",
+    "groups" : ["Sritys"],
     "description" : "Pools and lanes represent responsibilities for activities in a process. A pool or a lane can be an organization, a role or a system. Lanes subdivide pools or other lanes hierarchically.",
     "view" : "swimlane/lane.svg",
     "icon" : "swimlane/lane.png",
@@ -1517,151 +1517,151 @@
   }, {
     "type" : "node",
     "id" : "BoundaryErrorEvent",
-    "title" : "Boundary error event",
+    "title" : "Kraštinis klaidos įvykis",
     "description" : "A boundary event that catches a BPMN error",
     "view" : "intermediateevent/error.svg",
     "icon" : "catching/error.png",
-    "groups" : [ "Boundary Events" ],
+    "groups" : [ "Ribiniai įvykiai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "errorrefdefinition" ],
     "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
   }, {
     "type" : "node",
     "id" : "BoundaryTimerEvent",
-    "title" : "Boundary timer event",
+    "title" : "Kraštinis laikmačio įvykis",
     "description" : "A boundary event with a timer trigger",
     "view" : "intermediateevent/timer.svg",
     "icon" : "catching/timer.png",
-    "groups" : [ "Boundary Events" ],
+    "groups" : [ "Ribiniai įvykiai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "cancelactivityattribute", "timerdefinition" ],
     "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
   }, {
     "type" : "node",
     "id" : "BoundarySignalEvent",
-    "title" : "Boundary signal event",
+    "title" : "Kraštinis signalo įvykis",
     "description" : "A boundary event with a signal trigger",
     "view" : "intermediateevent/signal.catching.svg",
     "icon" : "catching/signal.png",
-    "groups" : [ "Boundary Events" ],
+    "groups" : [ "Ribiniai įvykiai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "cancelactivityattribute", "signalrefdefinition" ],
     "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
   }, {
     "type" : "node",
     "id" : "BoundaryMessageEvent",
-    "title" : "Boundary message event",
+    "title" : "Kraštinis pranešimo įvykis",
     "description" : "A boundary event with a message trigger",
     "view" : "intermediateevent/message.catching.svg",
     "icon" : "catching/message.png",
-    "groups" : [ "Boundary Events" ],
+    "groups" : [ "Ribiniai įvykiai" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "cancelactivityattribute", "messagerefdefinition" ],
     "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
   },
-  {
-    "type" : "node",
-    "id" : "CatchTimerEvent",
-    "title" : "Intermediate timer catching event",
-    "description" : "An intermediate catching event with a timer trigger",
-    "view" : "intermediateevent/timer.svg",
-    "icon" : "catching/timer.png",
-    "groups" : [ "Intermediate Catching Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "timerdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "CatchSignalEvent",
-    "title" : "Intermediate signal catching event",
-    "description" : "An intermediate catching event with a signal trigger",
-    "view" : "intermediateevent/signal.catching.svg",
-    "icon" : "catching/signal.png",
-    "groups" : [ "Intermediate Catching Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "CatchMessageEvent",
-    "title" : "Intermediate message catching event",
-    "description" : "An intermediate catching event with a message trigger",
-    "view" : "intermediateevent/message.catching.svg",
-    "icon" : "catching/message.png",
-    "groups" : [ "Intermediate Catching Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "messagerefdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "ThrowNoneEvent",
-    "title" : "Intermediate none throwing event",
-    "description" : "An intermediate event without a specific trigger",
-    "view" : "intermediateevent/none.svg",
-    "icon" : "throwing/none.png",
-    "groups" : [ "Intermediate Throwing Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "ThrowEventsMorph", "sequence_end", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "ThrowSignalEvent",
-    "title" : "Intermediate signal throwing event",
-    "description" : "An intermediate event with a signal trigger",
-    "view" : "intermediateevent/signal.throwing.svg",
-    "icon" : "throwing/signal.png",
-    "groups" : [ "Intermediate Throwing Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "ThrowEventsMorph", "sequence_end", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "EndNoneEvent",
-    "title" : "End event",
-    "description" : "An end event without a specific trigger",
-    "view" : "endevent/none.svg",
-    "icon" : "endevent/none.png",
-    "groups" : [ "End Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "executionlistenersbase" ],
-    "roles" : [ "EndEventsMorph", "sequence_end", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "EndErrorEvent",
-    "title" : "End error event",
-    "description" : "An end event that throws an error event",
-    "view" : "endevent/error.svg",
-    "icon" : "endevent/error.png",
-    "groups" : [ "End Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "errorrefdefinition", "executionlistenersbase" ],
-    "roles" : [ "EndEventsMorph", "sequence_end", "all" ]
-  }, {
-    "type" : "edge",
-    "id" : "SequenceFlow",
-    "title" : "Sequence flow",
-    "description" : "Sequence flow defines the execution order of activities.",
-    "view" : "connector/sequenceflow.svg",
-    "icon" : "connector/sequenceflow.png",
-    "groups" : [ "Connecting Objects" ],
-    "layout" : [ {
-      "type" : "layout.bpmn2_0.sequenceflow"
+    {
+      "type" : "node",
+      "id" : "CatchTimerEvent",
+      "title" : "Tarpinis laikmačio pagavimo įvykis",
+      "description" : "An intermediate catching event with a timer trigger",
+      "view" : "intermediateevent/timer.svg",
+      "icon" : "catching/timer.png",
+      "groups" : [ "Tarpiniai pagavimo įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "timerdefinition", "executionlistenersbase" ],
+      "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "CatchSignalEvent",
+      "title" : "Tarpinis signalo pagavimo įvykis",
+      "description" : "An intermediate catching event with a signal trigger",
+      "view" : "intermediateevent/signal.catching.svg",
+      "icon" : "catching/signal.png",
+      "groups" : [ "Tarpiniai pagavimo įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition", "executionlistenersbase" ],
+      "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "CatchMessageEvent",
+      "title" : "Tarpinis pranešimo pagavimo įvykis",
+      "description" : "An intermediate catching event with a message trigger",
+      "view" : "intermediateevent/message.catching.svg",
+      "icon" : "catching/message.png",
+      "groups" : [ "Tarpiniai pagavimo įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "messagerefdefinition", "executionlistenersbase" ],
+      "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "ThrowNoneEvent",
+      "title" : "Tarpinis neapbrėžtas išsiuntimo įvykis",
+      "description" : "An intermediate event without a specific trigger",
+      "view" : "intermediateevent/none.svg",
+      "icon" : "throwing/none.png",
+      "groups" : [ "Tarpiniai išsiuntimo įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "executionlistenersbase" ],
+      "roles" : [ "sequence_start", "ThrowEventsMorph", "sequence_end", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "ThrowSignalEvent",
+      "title" : "Tarpinis signalo išsiuntimo įvykis",
+      "description" : "An intermediate event with a signal trigger",
+      "view" : "intermediateevent/signal.throwing.svg",
+      "icon" : "throwing/signal.png",
+      "groups" : [ "Tarpiniai išsiuntimo įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition", "executionlistenersbase" ],
+      "roles" : [ "sequence_start", "ThrowEventsMorph", "sequence_end", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "EndNoneEvent",
+      "title" : "Pabaigos įvykis",
+      "description" : "An end event without a specific trigger",
+      "view" : "endevent/none.svg",
+      "icon" : "endevent/none.png",
+      "groups" : [ "Pabaigos įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "executionlistenersbase" ],
+      "roles" : [ "EndEventsMorph", "sequence_end", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "EndErrorEvent",
+      "title" : "Pabaigos klaidos įvykis",
+      "description" : "An end event that throws an error event",
+      "view" : "endevent/error.svg",
+      "icon" : "endevent/error.png",
+      "groups" : [ "Pabaigos įvykiai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "errorrefdefinition", "executionlistenersbase" ],
+      "roles" : [ "EndEventsMorph", "sequence_end", "all" ]
+    }, {
+      "type" : "edge",
+      "id" : "SequenceFlow",
+      "title" : "Sekos srautas",
+      "description" : "Sequence flow defines the execution order of activities.",
+      "view" : "connector/sequenceflow.svg",
+      "icon" : "connector/sequenceflow.png",
+      "groups" : [ "Sujungimo objektai" ],
+      "layout" : [ {
+        "type" : "layout.bpmn2_0.sequenceflow"
+      } ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "sequenceflowbase", "executionlistenersbase" ],
+      "roles" : [ "ConnectingObjectsMorph", "all" ]
+    }, {
+      "type" : "edge",
+      "id" : "Association",
+      "title" : "Asociacija",
+      "description" : "Associates a text annotation with an element.",
+      "view" : "connector/association.undirected.svg",
+      "icon" : "connector/association.undirected.png",
+      "groups" : [ "Sujungimo objektai" ],
+      "layout" : [ {
+        "type" : "layout.bpmn2_0.sequenceflow"
+      } ],
+      "propertyPackages" : [ "elementbase", "baseattributes" ],
+      "roles" : [ "ConnectingObjectsMorph", "all" ]
+    }, {
+      "type" : "node",
+      "id" : "TextAnnotation",
+      "title" : "Tekstinė anotacija",
+      "description" : "Annotates elements with description text.",
+      "view" : "artifact/text.annotation.svg",
+      "icon" : "artifact/text.annotation.png",
+      "groups" : [ "Artefaktai" ],
+      "propertyPackages" : [ "elementbase", "baseattributes", "textannotationbase" ],
+      "roles" : [ "all" ]
     } ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "sequenceflowbase", "executionlistenersbase" ],
-    "roles" : [ "ConnectingObjectsMorph", "all" ]
-  }, {
-    "type" : "edge",
-    "id" : "Association",
-    "title" : "Association",
-    "description" : "Associates a text annotation with an element.",
-    "view" : "connector/association.undirected.svg",
-    "icon" : "connector/association.undirected.png",
-    "groups" : [ "Connecting Objects" ],
-    "layout" : [ {
-      "type" : "layout.bpmn2_0.sequenceflow"
-    } ],
-    "propertyPackages" : [ "elementbase", "baseattributes" ],
-    "roles" : [ "ConnectingObjectsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "TextAnnotation",
-    "title" : "Text annotation",
-    "description" : "Annotates elements with description text.",
-    "view" : "artifact/text.annotation.svg",
-    "icon" : "artifact/text.annotation.png",
-    "groups" : [ "Artifacts" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "textannotationbase" ],
-    "roles" : [ "all" ]
-  } ],
   "rules" : {
     "cardinalityRules" : [ {
       "role" : "Startevents_all",
@@ -1714,8 +1714,8 @@
       "role" : "Pool",
       "contains" : [ "Lane" ]
     }, {
-       "role" : "Lane",
-       "contains" : [ "all" ]
+      "role" : "Lane",
+      "contains" : [ "all" ]
     } ],
     "morphingRules" : [ {
       "role" : "ActivitiesMorph",

@@ -92,6 +92,9 @@ public class ImportUploadReceiver implements Receiver, FinishedListener, ModelDa
           InputStreamReader in = new InputStreamReader(new ByteArrayInputStream(outputStream.toByteArray()), "UTF-8");
           XMLStreamReader xtr = xif.createXMLStreamReader(in);
           BpmnModel bpmnModel = new BpmnXMLConverter().convertToBpmnModel(xtr);
+          if (bpmnModel.getTargetNamespace()==null || bpmnModel.getTargetNamespace().isEmpty()) { // msa: hack?
+            bpmnModel.setTargetNamespace("root");
+          }
           xmlConverter.convertToBpmnModel(xtr);
           
           if (bpmnModel.getMainProcess() == null || bpmnModel.getMainProcess().getId() == null) {

@@ -1,0 +1,6 @@
+CREATE TABLE GERA_PROC_STRUCT
+(
+   key VARCHAR(64),
+   parentKey VARCHAR(64),
+   title VARCHAR(255)
+);

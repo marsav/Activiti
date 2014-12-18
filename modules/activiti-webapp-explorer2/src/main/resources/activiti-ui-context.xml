@@ -90,6 +90,7 @@
   
   <bean name="i18nManager" class="org.activiti.explorer.I18nManager" scope="session">
     <property name="messageSource" ref="messageSource" />
+    <property name="locale" value="lt" />
   </bean>
   
   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" >

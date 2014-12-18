@@ -17,6 +17,7 @@ import java.io.Serializable;
 
 import org.activiti.explorer.ui.MainWindow;
 import org.activiti.explorer.ui.alfresco.AlfrescoViewManager;
+import org.activiti.explorer.ui.gera.GeraViewManager;
 import org.springframework.beans.factory.FactoryBean;
 
 
@@ -27,13 +28,16 @@ public class ViewManagerFactoryBean implements FactoryBean<ViewManager>, Seriali
 
   protected String environment;
   protected MainWindow mainWindow;
-  
+
   public ViewManager getObject() throws Exception {
     DefaultViewManager viewManagerImpl;
     if (environment.equals(Environments.ALFRESCO)) {
       viewManagerImpl = new AlfrescoViewManager();
-    } else {
-      viewManagerImpl = new DefaultViewManager(); 
+    } else if (environment.equals(Environments.GERA)) {
+      viewManagerImpl = new GeraViewManager();
+    }
+    else {
+      viewManagerImpl = new DefaultViewManager();
     }
     viewManagerImpl.setMainWindow(mainWindow);
     return viewManagerImpl;

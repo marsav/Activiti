@@ -28,55 +28,59 @@ import com.vaadin.ui.Button;
 
 /**
  * Panel showing process definition detail.
- * 
+ *
  * @author Frederik Heremans
  * @author Joram Barrez
  */
 public class ProcessDefinitionDetailPanel extends AbstractProcessDefinitionDetailPanel {
-  
+
   private static final long serialVersionUID = 1L;
-  
+
   protected Button startProcessInstanceButton;
   protected Button editProcessDefinitionButton;
   protected FormPropertiesForm processDefinitionStartForm;
-  
+
+  public ProcessDefinitionDetailPanel(){
+    super();
+  }
   public ProcessDefinitionDetailPanel(String processDefinitionId, ProcessDefinitionPage processDefinitionPage) {
     super(processDefinitionId, processDefinitionPage);
   }
-  
+
+  @Override
   protected void initActions(AbstractPage parentPage) {
     ProcessDefinitionPage processDefinitionPage = (ProcessDefinitionPage) parentPage;
 
     startProcessInstanceButton = new Button(i18nManager.getMessage(Messages.PROCESS_START));
     startProcessInstanceButton.addListener(new StartProcessInstanceClickListener(processDefinition, processDefinitionPage));
-    
+
     editProcessDefinitionButton = new Button(i18nManager.getMessage(Messages.PROCESS_CONVERT));
     editProcessDefinitionButton.addListener(new ConvertProcessDefinitionToModelClickListener(processDefinition));
-    
+
     if(((ProcessDefinitionEntity) processDefinition).isGraphicalNotationDefined() == false) {
       editProcessDefinitionButton.setEnabled(false);
     }
-    
+
     // Clear toolbar and add 'start' button
     processDefinitionPage.getToolBar().removeAllButtons();
     processDefinitionPage.getToolBar().addButton(startProcessInstanceButton);
     processDefinitionPage.getToolBar().addButton(editProcessDefinitionButton);
   }
-  
+
   public void showProcessStartForm(StartFormData startFormData) {
     if(processDefinitionStartForm == null) {
       processDefinitionStartForm = new FormPropertiesForm();
       processDefinitionStartForm.setSubmitButtonCaption("Start process");
       processDefinitionStartForm.setCancelButtonCaption("Cancel");
-      
+
       // When form is submitted/cancelled, show the info again
       processDefinitionStartForm.addListener(new FormPropertiesEventListener() {
         private static final long serialVersionUID = 1L;
         protected void handleFormSubmit(FormPropertiesEvent event) {
           formService.submitStartFormData(processDefinition.getId(), event.getFormProperties());
-          
+
           // Show notification
-          ExplorerApp.get().getMainWindow().showNotification("Process '" + 
+          ExplorerApp.get().getMainWindow().showNotification("Process '" +
                   getProcessDisplayName(processDefinition) + "' started successfully");
           initProcessDefinitionInfo();
         }
@@ -86,19 +90,19 @@ public class ProcessDefinitionDetailPanel extends AbstractProcessDefinitionDetai
       });
     }
     processDefinitionStartForm.setFormProperties(startFormData.getFormProperties());
-    
+
     startProcessInstanceButton.setEnabled(false);
     detailContainer.removeAllComponents();
     detailContainer.addComponent(processDefinitionStartForm);
   }
-  
+
   @Override
   public void initProcessDefinitionInfo() {
     super.initProcessDefinitionInfo();
-    
+
     if (startProcessInstanceButton != null) {
       startProcessInstanceButton.setEnabled(true);
     }
   }
-  
+
 }
