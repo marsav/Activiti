@@ -287,7 +287,7 @@ public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants,
     }
   }
   
-  public BpmnModel convertToBpmnModel(JsonNode modelNode) {
+  public BpmnModel convertToBpmnModel(JsonNode modelNode) throws Exception {
     BpmnModel bpmnModel = new BpmnModel();
     Map<String, JsonNode> shapeMap = new HashMap<String, JsonNode>();
     Map<String, JsonNode> sourceRefMap = new HashMap<String, JsonNode>();
@@ -775,26 +775,31 @@ public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants,
   
   private void filterAllEdges(JsonNode objectNode, 
       Map<String, JsonNode> edgeMap, Map<String, List<JsonNode>> sourceAndTargetMap,
-      Map<String, JsonNode> shapeMap, Map<String, JsonNode> sourceRefMap) {
+      Map<String, JsonNode> shapeMap, Map<String, JsonNode> sourceRefMap) throws Exception {
     
     if (objectNode.get(EDITOR_CHILD_SHAPES) != null) {
       for (JsonNode jsonChildNode : objectNode.get(EDITOR_CHILD_SHAPES)) {
-        
         ObjectNode childNode = (ObjectNode) jsonChildNode;
         String stencilId = BpmnJsonConverterUtil.getStencilId(childNode);
-        if (STENCIL_SUB_PROCESS.equals(stencilId)) {
-          filterAllEdges(childNode, edgeMap, sourceAndTargetMap, shapeMap, sourceRefMap);
-          
-        } else if (STENCIL_SEQUENCE_FLOW.equals(stencilId)) {
-          
-          String childEdgeId = BpmnJsonConverterUtil.getElementId(childNode);
-          String targetRefId = childNode.get("target").get(EDITOR_SHAPE_ID).asText();
-          List<JsonNode> sourceAndTargetList = new ArrayList<JsonNode>();
-          sourceAndTargetList.add(sourceRefMap.get(childNode.get(EDITOR_SHAPE_ID).asText()));
-          sourceAndTargetList.add(shapeMap.get(targetRefId));
-          
-          edgeMap.put(childEdgeId, childNode);
-          sourceAndTargetMap.put(childEdgeId, sourceAndTargetList);
+        try {
+          if (STENCIL_SUB_PROCESS.equals(stencilId)) {
+            filterAllEdges(childNode, edgeMap, sourceAndTargetMap, shapeMap, sourceRefMap);
+
+          } else if (STENCIL_SEQUENCE_FLOW.equals(stencilId)) {
+
+            String childEdgeId = BpmnJsonConverterUtil.getElementId(childNode);
+            String targetRefId = childNode.get("target").get(EDITOR_SHAPE_ID).asText();
+            List<JsonNode> sourceAndTargetList = new ArrayList<JsonNode>();
+            sourceAndTargetList.add(sourceRefMap.get(childNode.get(EDITOR_SHAPE_ID).asText()));
+            sourceAndTargetList.add(shapeMap.get(targetRefId));
+
+            edgeMap.put(childEdgeId, childNode);
+            sourceAndTargetMap.put(childEdgeId, sourceAndTargetList);
+          }
+        }
+        catch (Exception e) {
+          String resId = childNode.get("resourceId").asText();
+          throw new Exception("Faulty "+stencilId+" node: "+resId);
         }
       }
     }

@@ -28,7 +28,11 @@ public abstract class AbstractConverterTest {
   protected BpmnModel convertToJsonAndBack(BpmnModel bpmnModel) {
     ObjectNode modelNode = new BpmnJsonConverter().convertToJson(bpmnModel);
     System.out.println("JSON: " + modelNode.toString());
-    bpmnModel = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+    try {
+      bpmnModel = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     return bpmnModel;
   }
   

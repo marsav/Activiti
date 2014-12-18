@@ -345,16 +345,23 @@ public class EditorProcessDefinitionDetailPanel extends DetailPanel {
   }
 
   protected void deployModelerModel(final ObjectNode modelNode) {
-    BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
-    byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(model);
+    BpmnModel model = null;
+    try {
+      model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+      byte[] bpmnBytes = new BpmnXMLConverter().convertToXML(model);
 
-    String processName = modelData.getName() + ".bpmn20.xml";
-    Deployment deployment = repositoryService.createDeployment()
-            .name(modelData.getName())
-            .addString(processName, new String(bpmnBytes))
-            .deploy();
+      String processName = modelData.getName() + ".bpmn20.xml";
+      Deployment deployment = repositoryService.createDeployment()
+              .name(modelData.getName())
+              .addString(processName, new String(bpmnBytes))
+              .deploy();
 
-    ExplorerApp.get().getViewManager().showDeploymentPage(deployment.getId());
+      ExplorerApp.get().getViewManager().showDeploymentPage(deployment.getId());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      ExplorerApp.get().getNotificationManager().showErrorNotification(Messages.PROCESS_TOXML_FAILED, e);
+    }
   }
 
 }
