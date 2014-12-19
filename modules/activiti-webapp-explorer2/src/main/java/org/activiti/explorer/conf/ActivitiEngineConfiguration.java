@@ -20,6 +20,7 @@ import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.activiti.explorer.form.MonthFormType;
 import org.activiti.explorer.form.ProcessDefinitionFormType;
 import org.activiti.explorer.form.UserFormType;
+import org.activiti.ldap.LDAPConfigurator;
 import org.activiti.spring.ProcessEngineFactoryBean;
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.slf4j.Logger;
@@ -50,9 +51,11 @@ public class ActivitiEngineConfiguration {
     PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
     try {
       propertySourcesPlaceholderConfigurer.setLocations(new Resource[] {
+              new UrlResource("file:///opt/config/engine.properties"),
               new ClassPathResource("ui.properties"),
-              new ClassPathResource("engine.properties"),
-              new UrlResource("file:///opt/config/db.properties")});
+              new ClassPathResource("db.properties")
+              });
+      propertySourcesPlaceholderConfigurer.setIgnoreResourceNotFound(true);
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
@@ -74,24 +77,18 @@ public class ActivitiEngineConfiguration {
     
     try {
       @SuppressWarnings("unchecked")
-//      Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(environment.getProperty("jdbc.driver", "org.h2.Driver"));
+      Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(environment.getProperty("jdbc.driver", "org.h2.Driver"));
 //        Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(environment.getProperty("jdbc.driver", "oracle.jdbc.driver.OracleDriver"));
-        Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(jdbcDriver);
+//        Class<? extends Driver> driverClass = (Class<? extends Driver>) Class.forName(jdbcDriver);
       ds.setDriverClass(driverClass);
-      
     } catch (Exception e) {
       log.error("Error loading driver class", e);
     }
     
     // Connection settings
-//    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000"));
-//    ds.setUsername(environment.getProperty("jdbc.username", "sa"));
-//    ds.setPassword(environment.getProperty("jdbc.password", ""));
-
 //    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:oracle:thin:@192.168.1.204:1521:sis1")); // internal ip
 //    ds.setUrl(environment.getProperty("jdbc.url", "jdbc:oracle:thin:@213.164.97.50:1521:sis1"));
     ds.setUrl(jdbcUrl);
-
     ds.setUsername(jdbcUsername);
     ds.setPassword(jdbcPassword);
     return ds;
@@ -121,7 +118,18 @@ public class ActivitiEngineConfiguration {
       throw new RuntimeException(e);
     }
   }
-  
+
+  @Value("${ad.server}")
+  private String adServer;
+  @Value("${ad.port}")
+  private String adPort;
+  @Value("${ad.baseDn}")
+  private String adBaseDn;
+  @Value("${ad.user}")
+  private String adUser;
+  @Value("${ad.password}")
+  private String adPassword;
+
   @Bean(name="processEngineConfiguration")
   public ProcessEngineConfigurationImpl processEngineConfiguration() {
   	SpringProcessEngineConfiguration processEngineConfiguration = new SpringProcessEngineConfiguration();
@@ -137,7 +145,33 @@ public class ActivitiEngineConfiguration {
   	formTypes.add(new ProcessDefinitionFormType());
   	formTypes.add(new MonthFormType());
   	processEngineConfiguration.setCustomFormTypes(formTypes);
-  	
+
+    // todo: ad support
+    // ad support
+    boolean adEnabled = Boolean.valueOf(environment.getProperty("ad.enabled", "false"));
+    if (adEnabled) {
+      LDAPConfigurator ldap = new LDAPConfigurator();
+
+      // properties
+      ldap.setServer(adServer);
+      ldap.setPort(Integer.valueOf(adPort));
+      ldap.setBaseDn(adBaseDn);
+      ldap.setUser(adUser);
+      ldap.setPassword(adPassword);
+
+      // defaults
+      ldap.setQueryUserByUserId("(&(objectClass=user)(sAMAccountName={0}))");
+      ldap.setQueryUserByFullNameLike("(&(objectClass=user)(|({0}=*{1}*)({2}=*{3}*)))");
+      ldap.setQueryGroupsForUser("(&amp;(objectClass=group)(member={0}))");
+      ldap.setUserIdAttribute("sAMAccountName");
+      ldap.setUserFirstNameAttribute("givenName");
+      ldap.setUserLastNameAttribute("sn");
+      ldap.setGroupIdAttribute("cn");
+      ldap.setGroupNameAttribute("cn");
+
+      processEngineConfiguration.addConfigurator(ldap);
+    }
+
   	return processEngineConfiguration;
   }
   
