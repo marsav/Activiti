@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import math.geom2d.Point2D;
 import math.geom2d.conic.Circle2D;
@@ -839,135 +840,164 @@ public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants,
     propertiesNode.put(PROPERTY_EVENT_LISTENERS, listenersNode);
   }
   
-  private void readEdgeDI(Map<String, JsonNode> edgeMap, Map<String, List<JsonNode>> sourceAndTargetMap, BpmnModel bpmnModel) {
-    for (String edgeId : edgeMap.keySet()) {
-      
-      JsonNode edgeNode = edgeMap.get(edgeId);
-      List<JsonNode> sourceAndTargetList = sourceAndTargetMap.get(edgeId);
-      
-      JsonNode sourceRefNode = sourceAndTargetList.get(0);
-      JsonNode targetRefNode = sourceAndTargetList.get(1);
-      
-      if (sourceRefNode == null) {
-      	LOGGER.info("Skipping edge {} because source ref is null", edgeId);
-      	continue;
-      }
-      
-      if (targetRefNode == null) {
-      	LOGGER.info("Skipping edge {} because target ref is null", edgeId);
-      	continue;
-      }
-      
-      JsonNode dockersNode = edgeNode.get(EDITOR_DOCKERS);
-      double sourceDockersX = dockersNode.get(0).get(EDITOR_BOUNDS_X).doubleValue();
-      double sourceDockersY = dockersNode.get(0).get(EDITOR_BOUNDS_Y).doubleValue();
-      
-      GraphicInfo sourceInfo = bpmnModel.getGraphicInfo(BpmnJsonConverterUtil.getElementId(sourceRefNode));
-      GraphicInfo targetInfo = bpmnModel.getGraphicInfo(BpmnJsonConverterUtil.getElementId(targetRefNode));
-      
-      /*JsonNode sourceRefBoundsNode = sourceRefNode.get(EDITOR_BOUNDS);
-      BoundsLocation sourceRefUpperLeftLocation = getLocation(EDITOR_BOUNDS_UPPER_LEFT, sourceRefBoundsNode);
-      BoundsLocation sourceRefLowerRightLocation = getLocation(EDITOR_BOUNDS_LOWER_RIGHT, sourceRefBoundsNode);
-      
-      JsonNode targetRefBoundsNode = targetRefNode.get(EDITOR_BOUNDS);
-      BoundsLocation targetRefUpperLeftLocation = getLocation(EDITOR_BOUNDS_UPPER_LEFT, targetRefBoundsNode);
-      BoundsLocation targetRefLowerRightLocation = getLocation(EDITOR_BOUNDS_LOWER_RIGHT, targetRefBoundsNode);*/
-      
-      double sourceRefLineX = sourceInfo.getX() + sourceDockersX;
-      double sourceRefLineY = sourceInfo.getY() + sourceDockersY;
-      
-      double nextPointInLineX;
-      double nextPointInLineY;
-      
-      nextPointInLineX = dockersNode.get(1).get(EDITOR_BOUNDS_X).doubleValue();
-      nextPointInLineY = dockersNode.get(1).get(EDITOR_BOUNDS_Y).doubleValue();
-      if (dockersNode.size() == 2) {
-        nextPointInLineX += targetInfo.getX();
-        nextPointInLineY += targetInfo.getY();
-      }
-      
-      Line2D firstLine = new Line2D(sourceRefLineX, sourceRefLineY, nextPointInLineX, nextPointInLineY);
-      
-      String sourceRefStencilId = BpmnJsonConverterUtil.getStencilId(sourceRefNode);
-      String targetRefStencilId = BpmnJsonConverterUtil.getStencilId(targetRefNode);
-      
-      List<GraphicInfo> graphicInfoList = new ArrayList<GraphicInfo>();
-      
-      if (DI_CIRCLES.contains(sourceRefStencilId)) {
-        Circle2D eventCircle = new Circle2D(sourceInfo.getX() + sourceDockersX, 
-            sourceInfo.getY() + sourceDockersY, sourceDockersX);
-        
-        Collection<Point2D> intersections = eventCircle.intersections(firstLine);
-        Point2D intersection = intersections.iterator().next();
-        graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
-      
-      } else if (DI_RECTANGLES.contains(sourceRefStencilId)) {
-        Polyline2D rectangle = createRectangle(sourceInfo);
-        
-        Collection<Point2D> intersections = rectangle.intersections(firstLine);
-        Point2D intersection = intersections.iterator().next();
-        graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
-      
-      } else if (DI_GATEWAY.contains(sourceRefStencilId)) {
-        Polyline2D gatewayRectangle = createGateway(sourceInfo);
-        
-        Collection<Point2D> intersections = gatewayRectangle.intersections(firstLine);
-        Point2D intersection = intersections.iterator().next();
-        graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
-      }
-      
-      Line2D lastLine = null;
-      
-      if (dockersNode.size() > 2) {
-        for(int i = 1; i < dockersNode.size() - 1; i++) {
-          double x = dockersNode.get(i).get(EDITOR_BOUNDS_X).doubleValue();
-          double y = dockersNode.get(i).get(EDITOR_BOUNDS_Y).doubleValue();
-          graphicInfoList.add(createGraphicInfo(x, y));
+  private void readEdgeDI(Map<String, JsonNode> edgeMap, Map<String, List<JsonNode>> sourceAndTargetMap, BpmnModel bpmnModel)
+      throws Exception {
+    String currentEdgeId = "";
+    try {
+      for (String edgeId : edgeMap.keySet()) {
+        currentEdgeId = edgeId;
+
+        JsonNode edgeNode = edgeMap.get(edgeId);
+        List<JsonNode> sourceAndTargetList = sourceAndTargetMap.get(edgeId);
+
+        JsonNode sourceRefNode = sourceAndTargetList.get(0);
+        JsonNode targetRefNode = sourceAndTargetList.get(1);
+
+        if (sourceRefNode == null) {
+          LOGGER.info("Skipping edge {} because source ref is null", edgeId);
+          continue;
         }
-        
-        double startLastLineX = dockersNode.get(dockersNode.size() - 2).get(EDITOR_BOUNDS_X).doubleValue();
-        double startLastLineY = dockersNode.get(dockersNode.size() - 2).get(EDITOR_BOUNDS_Y).doubleValue();
-        
-        double endLastLineX = dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_X).doubleValue();
-        double endLastLineY = dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_Y).doubleValue();
-        
-        endLastLineX += targetInfo.getX();
-        endLastLineY += targetInfo.getY();
-        
-        lastLine = new Line2D(startLastLineX, startLastLineY, endLastLineX, endLastLineY);
-        
-      } else {
-        lastLine = firstLine;
+
+        if (targetRefNode == null) {
+          LOGGER.info("Skipping edge {} because target ref is null", edgeId);
+          continue;
+        }
+
+        JsonNode dockersNode = edgeNode.get(EDITOR_DOCKERS);
+        double sourceDockersX = dockersNode.get(0).get(EDITOR_BOUNDS_X).doubleValue();
+        double sourceDockersY = dockersNode.get(0).get(EDITOR_BOUNDS_Y).doubleValue();
+
+        GraphicInfo
+            sourceInfo =
+            bpmnModel.getGraphicInfo(BpmnJsonConverterUtil.getElementId(sourceRefNode));
+        GraphicInfo
+            targetInfo =
+            bpmnModel.getGraphicInfo(BpmnJsonConverterUtil.getElementId(targetRefNode));
+
+        /*JsonNode sourceRefBoundsNode = sourceRefNode.get(EDITOR_BOUNDS);
+        BoundsLocation sourceRefUpperLeftLocation = getLocation(EDITOR_BOUNDS_UPPER_LEFT, sourceRefBoundsNode);
+        BoundsLocation sourceRefLowerRightLocation = getLocation(EDITOR_BOUNDS_LOWER_RIGHT, sourceRefBoundsNode);
+
+        JsonNode targetRefBoundsNode = targetRefNode.get(EDITOR_BOUNDS);
+        BoundsLocation targetRefUpperLeftLocation = getLocation(EDITOR_BOUNDS_UPPER_LEFT, targetRefBoundsNode);
+        BoundsLocation targetRefLowerRightLocation = getLocation(EDITOR_BOUNDS_LOWER_RIGHT, targetRefBoundsNode);*/
+
+        double sourceRefLineX = sourceInfo.getX() + sourceDockersX;
+        double sourceRefLineY = sourceInfo.getY() + sourceDockersY;
+
+        double nextPointInLineX;
+        double nextPointInLineY;
+
+        nextPointInLineX = dockersNode.get(1).get(EDITOR_BOUNDS_X).doubleValue();
+        nextPointInLineY = dockersNode.get(1).get(EDITOR_BOUNDS_Y).doubleValue();
+        if (dockersNode.size() == 2) {
+          nextPointInLineX += targetInfo.getX();
+          nextPointInLineY += targetInfo.getY();
+        }
+
+        Line2D
+            firstLine =
+            new Line2D(sourceRefLineX, sourceRefLineY, nextPointInLineX, nextPointInLineY);
+
+        String sourceRefStencilId = BpmnJsonConverterUtil.getStencilId(sourceRefNode);
+        String targetRefStencilId = BpmnJsonConverterUtil.getStencilId(targetRefNode);
+
+        List<GraphicInfo> graphicInfoList = new ArrayList<GraphicInfo>();
+
+        if (DI_CIRCLES.contains(sourceRefStencilId)) {
+          Circle2D eventCircle = new Circle2D(sourceInfo.getX() + sourceDockersX,
+                                              sourceInfo.getY() + sourceDockersY, sourceDockersX);
+
+          Collection<Point2D> intersections = eventCircle.intersections(firstLine);
+          Point2D intersection = intersections.iterator().next();
+          graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
+
+        } else if (DI_RECTANGLES.contains(sourceRefStencilId)) {
+          Polyline2D rectangle = createRectangle(sourceInfo);
+
+          Collection<Point2D> intersections = rectangle.intersections(firstLine);
+          Point2D intersection = intersections.iterator().next();
+          graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
+
+        } else if (DI_GATEWAY.contains(sourceRefStencilId)) {
+          Polyline2D gatewayRectangle = createGateway(sourceInfo);
+
+          Collection<Point2D> intersections = gatewayRectangle.intersections(firstLine);
+          Point2D intersection = intersections.iterator().next();
+          graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
+        }
+
+        Line2D lastLine = null;
+
+        if (dockersNode.size() > 2) {
+          for (int i = 1; i < dockersNode.size() - 1; i++) {
+            double x = dockersNode.get(i).get(EDITOR_BOUNDS_X).doubleValue();
+            double y = dockersNode.get(i).get(EDITOR_BOUNDS_Y).doubleValue();
+            graphicInfoList.add(createGraphicInfo(x, y));
+          }
+
+          double
+              startLastLineX =
+              dockersNode.get(dockersNode.size() - 2).get(EDITOR_BOUNDS_X).doubleValue();
+          double
+              startLastLineY =
+              dockersNode.get(dockersNode.size() - 2).get(EDITOR_BOUNDS_Y).doubleValue();
+
+          double
+              endLastLineX =
+              dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_X).doubleValue();
+          double
+              endLastLineY =
+              dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_Y).doubleValue();
+
+          endLastLineX += targetInfo.getX();
+          endLastLineY += targetInfo.getY();
+
+          lastLine = new Line2D(startLastLineX, startLastLineY, endLastLineX, endLastLineY);
+
+        } else {
+          lastLine = firstLine;
+        }
+
+        if (DI_RECTANGLES.contains(targetRefStencilId)) {
+          Polyline2D rectangle = createRectangle(targetInfo);
+
+          Collection<Point2D> intersections = rectangle.intersections(lastLine);
+          Point2D intersection = intersections.iterator().next();
+          graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
+
+        } else if (DI_CIRCLES.contains(targetRefStencilId)) {
+
+          double
+              targetDockersX =
+              dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_X).doubleValue();
+          double
+              targetDockersY =
+              dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_Y).doubleValue();
+
+          Circle2D eventCircle = new Circle2D(targetInfo.getX() + targetDockersX,
+                                              targetInfo.getY() + targetDockersY, targetDockersX);
+
+          Collection<Point2D> intersections = eventCircle.intersections(lastLine);
+          Point2D intersection = intersections.iterator().next();
+          graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
+
+        } else if (DI_GATEWAY.contains(targetRefStencilId)) {
+          Polyline2D gatewayRectangle = createGateway(targetInfo);
+
+          Collection<Point2D> intersections = gatewayRectangle.intersections(lastLine);
+          Point2D intersection = intersections.iterator().next();
+          graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
+        }
+
+        bpmnModel.addFlowGraphicInfoList(edgeId, graphicInfoList);
       }
-      
-      if (DI_RECTANGLES.contains(targetRefStencilId)) {
-        Polyline2D rectangle = createRectangle(targetInfo);
-        
-        Collection<Point2D> intersections = rectangle.intersections(lastLine);
-        Point2D intersection = intersections.iterator().next();
-        graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
-        
-      } else if (DI_CIRCLES.contains(targetRefStencilId)) {
-        
-        double targetDockersX = dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_X).doubleValue();
-        double targetDockersY = dockersNode.get(dockersNode.size() - 1).get(EDITOR_BOUNDS_Y).doubleValue();
-        
-        Circle2D eventCircle = new Circle2D(targetInfo.getX() + targetDockersX, 
-            targetInfo.getY() + targetDockersY, targetDockersX);
-        
-        Collection<Point2D> intersections = eventCircle.intersections(lastLine);
-        Point2D intersection = intersections.iterator().next();
-        graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
-        
-      } else if (DI_GATEWAY.contains(targetRefStencilId)) {
-        Polyline2D gatewayRectangle = createGateway(targetInfo);
-        
-        Collection<Point2D> intersections = gatewayRectangle.intersections(lastLine);
-        Point2D intersection = intersections.iterator().next();
-        graphicInfoList.add(createGraphicInfo(intersection.getX(), intersection.getY()));
-      }
-      
-      bpmnModel.addFlowGraphicInfoList(edgeId, graphicInfoList);
+    }
+    catch (NoSuchElementException nsee) {
+      throw new Exception("Failure reading edge DI for element "+currentEdgeId, nsee);
+    }
+    catch (Exception e) {
+      throw new Exception("Failure reading edge DI for element "+currentEdgeId, e);
     }
   }
   
