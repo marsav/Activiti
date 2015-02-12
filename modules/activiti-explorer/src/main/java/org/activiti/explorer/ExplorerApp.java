@@ -12,6 +12,7 @@
  */
 package org.activiti.explorer;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,6 +36,8 @@ import org.activiti.workflow.simple.converter.json.SimpleWorkflowJsonConverter;
 
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Joram Barrez
@@ -42,6 +45,7 @@ import com.vaadin.terminal.gwt.server.HttpServletRequestListener;
 public class ExplorerApp extends Application implements HttpServletRequestListener {
   
   private static final long serialVersionUID = -1L;
+  private final Logger log = LoggerFactory.getLogger(ExplorerApp.class);
 
   // Thread local storage of instance for each user
   protected transient static ThreadLocal<ExplorerApp> current = new ThreadLocal<ExplorerApp>();
@@ -294,13 +298,24 @@ public class ExplorerApp extends Application implements HttpServletRequestListen
     return adminGroups;
   }
   public void setAdminGroups(List<String> adminGroups) {
-    this.adminGroups = adminGroups;
+    log.debug("admin groups: "+adminGroups);
+    if (adminGroups!=null && adminGroups.size()==1) {
+      this.adminGroups = Arrays.asList(adminGroups.get(0).split("[\\s,]+"));
+    }
+    else
+      this.adminGroups = adminGroups;
+
   }
   public List<String> getUserGroups() {
     return userGroups;
   }
   public void setUserGroups(List<String> userGroups) {
-    this.userGroups = userGroups;
+    log.debug("user groups: "+userGroups);
+    if (userGroups!=null && userGroups.size()==1) {
+      this.userGroups = Arrays.asList(userGroups.get(0).split("[\\s,]+"));
+    }
+    else
+      this.userGroups = userGroups;
   }
   public SimpleWorkflowJsonConverter getSimpleWorkflowJsonConverter() {
 	  return simpleWorkflowJsonConverter;
